@@ -1,3 +1,4 @@
 *.js linguist-language=Objective-C
 *.css linguist-language=Objective-C
 *.html linguist-language=Objective-C
+*.HTML linguist-language=Objective-C
