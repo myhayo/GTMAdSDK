@@ -1,0 +1,29 @@
+PODS:
+  - Bytedance-UnionAD (2.9.5.8)
+  - GDTMobSDK (4.11.8):
+    - GDTMobSDK/GDTMobSDK (= 4.11.8)
+  - GDTMobSDK/GDTMobSDK (4.11.8)
+  - GTMAdSDK (1.0.2):
+    - Bytedance-UnionAD
+    - GDTMobSDK (~> 4.11.8)
+
+DEPENDENCIES:
+  - GTMAdSDK (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Bytedance-UnionAD
+    - GDTMobSDK
+
+EXTERNAL SOURCES:
+  GTMAdSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Bytedance-UnionAD: af6f65144b4fce6329946e89f262ffc8c6c1937c
+  GDTMobSDK: 8961a9c5ea9303d4ffc9ef2ee44cc120359a1c8d
+  GTMAdSDK: 956f8804be4328f2de50181f6f279fc7044e75fd
+
+PODFILE CHECKSUM: e2c44050b7db185c518b4e64ef433c8c6dda4c1b
+
+COCOAPODS: 1.9.1
