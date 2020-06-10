@@ -1,4 +1,4 @@
-# 火眼聚合广告 SDK v1.0.2 接入文档 （for iOS）
+# 火眼聚合广告 SDK v1.0.3 接入文档 （for iOS）
 
 
 
@@ -21,7 +21,7 @@ pod 'GTMAdSDK'
 
 ### 1.3 聚合SDK使用中各第三方平台注册APPID注意事项
 
-聚合包中在使用任意类型广告**获取广告时**会调用对应平台的**`registerAppid`**的方法注册对应**appid**。
+聚合包中在使用任意类型广告**获取广告时**会调用对应平台的**`registerAppid`** 的方法注册对应appid。
 
 所以如果原工程集成了相同的第三方广告平台，需要在获取广告时重新注册**appid**，以免被聚合SDK重置appid后导致无法获取广告。
 
@@ -100,8 +100,54 @@ SDK支持**`开屏`**、**`Banner`**、**`激励视频`**、**`信息流模版(�
 ##### 2.1.3 创建开屏实例并设置**`代理`**
 
 ```objective-c
-_splashAd = [[GTMAdSplashAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDK494F6908BAD1"];
-_splashAd.delegate = self;
+@property (nonatomic, strong) GTMAdSplashAd *splashAd;
+@property (nonatomic, strong) UILabel *launchView;
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // Override point for customization after application launch.
+    
+    _splashAd = [[GTMAdSplashAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDK494F6908BAD1"];
+    _splashAd.delegate = self;
+    
+    /*
+    if ((arc4random() % 10) % 2 == 0) {
+        // 全屏广告
+        [_splashAd loadAdAndShowInWindow:UIApplication.sharedApplication.keyWindow];
+        return;
+    }*/
+    
+    // 创建底部视图(用作非全屏开屏广告)
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, UIScreen.mainScreen.bounds.size.height / 4 * 3, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height / 4)];
+    label.text = @"这是开屏广告底部视图";
+    label.textColor = [UIColor blackColor];
+    label.backgroundColor = [UIColor whiteColor];
+    label.font = [UIFont systemFontOfSize:30];
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    // 非全屏广告
+    [_splashAd loadAdAndShowInWindow:_window withBottomView:label];
+    
+    // 为了使启动页和开屏衔接 加载开屏的同时 在window或者window的rootViewController上放置一个和启动页LaunchScreen一样布局的view 在开屏加载成功或者失败时移除
+    _launchView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height)];
+    _launchView.text = @"火眼聚合广告";
+    _launchView.textColor = [UIColor blackColor];
+    _launchView.backgroundColor = [UIColor whiteColor];
+    _launchView.font = [UIFont systemFontOfSize:20];
+    _launchView.textAlignment = NSTextAlignmentCenter;
+    
+    // 1. 直接在rootVC的view上添加
+//    [_window.rootViewController.view addSubview:_launchView];
+    
+    
+    // 2.在window上添加
+    // 如果不想在rootVC上添加这个仿启动页布局 可以在window上添加 但是需要注意 rootVC的view在显示之前是没有添加在window上的
+    // 所以如果想要_launchView在rootVC的view的上层 需要先完成rootVC的加载
+    [_window makeKeyAndVisible];
+    [_window addSubview:_launchView];
+    
+    return YES;
+}
 ```
 
 ##### 2.1.4 开始加载开屏广告，分为**`全屏开屏`**广告和**`非全屏开屏广告`**
@@ -124,7 +170,29 @@ label.textAlignment = NSTextAlignmentCenter;
 [_splashAd loadAdAndShowInWindow:UIApplication.sharedApplication.keyWindow withBottomView:label];
 ```
 
-##### 2.1.5 通过代理处理广告事件
+##### 2.1.5 启动页和开屏广告衔接建议
+
+```objective-c
+    // 为了使启动页和开屏衔接 加载开屏的同时 在window或者window的rootViewController上放置一个和启动页LaunchScreen一样布局的view 在开屏加载成功或者失败时移除
+    _launchView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height)];
+    _launchView.text = @"火眼聚合广告";
+    _launchView.textColor = [UIColor blackColor];
+    _launchView.backgroundColor = [UIColor whiteColor];
+    _launchView.font = [UIFont systemFontOfSize:20];
+    _launchView.textAlignment = NSTextAlignmentCenter;
+    
+    // 1. 直接在rootVC的view上添加
+//    [_window.rootViewController.view addSubview:_launchView];
+    
+    
+    // 2.在window上添加
+    // 如果不想在rootVC上添加这个仿启动页布局 可以在window上添加 但是需要注意 rootVC的view在显示之前是没有添加在window上的
+    // 所以如果想要_launchView在rootVC的view的上层 需要先完成rootVC的加载
+    [_window makeKeyAndVisible];
+    [_window addSubview:_launchView];
+```
+
+##### 2.1.6 通过代理处理广告事件
 
 ```objective-c
 // 实现代理
@@ -135,12 +203,12 @@ label.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)gtm_splashAdSuccessPresentScreen:(GTMAdSplashAd *)splashAd {
-    [_loadingView stopAnimating];
+    [_launchView removeFromSuperview];
     NSLog(@"-----开屏广告展示成功----");
 }
 
 - (void)gtm_splashAd:(GTMAdSplashAd *)splashAd didFailWithError:(NSError *)error {
-    [_loadingView stopAnimating];
+    [_launchView removeFromSuperview];
     NSLog(@"-----开屏广告展示失败 [error=>%@] ----", error);
 }
 
@@ -282,9 +350,12 @@ _rewardVideoAd.delegate = self;
 ```objective-c
 - (void)gtm_rewardVideoAdVideoDidLoad:(GTMAdRewardVideoAd *)rewardVideoAd {
     NSLog(@"----激励视频视频缓存成功----");
-  	// 展示激励视频
+		// 展示激励视频
     [rewardVideoAd showAdFromRootViewController:self];
-  	// 可根据业务逻辑选择在之后展示 一般有效期为半小时 展示之前使用 isValid 判断广告是否有效再展示
+		// 可根据业务逻辑选择在之后展示 一般有效期为半小时 展示之前使用 isValid 判断广告是否有效再展示
+  	if ([rewardVideoAd isValid]) {
+      
+    }
 }
 ```
 
@@ -575,6 +646,9 @@ _fullscreenVideoAd.delegate = self;
     [fullscreenVideoAd showAdFromRootViewController:self];
     [_loadingView stopAnimating];
   	// 可根据业务逻辑选择在之后展示 一般有效期为半小时 展示之前使用 isValid 判断广告是否有效再展示
+  	if ([fullscreenVideoAd isValid]) {
+      
+    }
 }
 ```
 
