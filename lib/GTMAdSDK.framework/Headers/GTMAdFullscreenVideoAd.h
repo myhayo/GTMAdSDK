@@ -36,10 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 点击广告
 - (void)gtm_fullscreenVideoAdDidClick:(GTMAdFullscreenVideoAd *)fullscreenVideoAd;
 
-/// 点击广告后展示的详情页被关闭
+/// 点击广告后展示的详情页被关闭 (注意1.0.4版本之后 某些上游广告弹出的广告页被关闭时无法获取回调)
 - (void)gtm_fullscreenVideoAdDidCloseOtherController:(GTMAdFullscreenVideoAd *)fullscreenVideoAd;
 
-/// 视频播放完成
+/// 视频播放完成（1.0.4版本之后如果配置了sigmob平台的广告 播放完成不能作为完整播放视频的判断条件，因为sigmob平台广告在点击跳过按钮后依然回调播放完成）
 - (void)gtm_fullscreenVideoAdDidPlayFinish:(GTMAdFullscreenVideoAd *)fullscreenVideoAd;
 
 /// 关闭广告页面

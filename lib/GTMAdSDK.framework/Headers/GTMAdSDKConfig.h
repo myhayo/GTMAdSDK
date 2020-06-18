@@ -12,9 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GTMAdSDKConfig : NSObject
 
-/**
- 聚合SDK版本
- */
+/// 聚合SDK版本
 @property (nonatomic, copy, class, readonly) NSString *sdkVersion;
 
 /// 穿山甲SDK版本
@@ -22,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 广点通SDK版本
 @property (nonatomic, copy, class, readonly) NSString *gdtSdkVersion;
+
+/// sigmobSDK版本
+@property (nonatomic, copy, class, readonly) NSString *sigmobSdkVersion;
 
 @end
 

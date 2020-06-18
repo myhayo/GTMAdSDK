@@ -1,6 +1,4 @@
-# 火眼聚合广告 SDK v1.0.3 接入文档 （for iOS）
-
-
+# 火眼聚合广告 SDK v1.0.4 接入文档 （for iOS）
 
 [TOC]
 
@@ -18,10 +16,11 @@ pod 'GTMAdSDK'
 
 - 穿山甲SDK版本：**2.9.5.8**
 - 广点通SDK版本：**4.11.8**
+- sigmob SDK版本：**2.18.2**
 
 ### 1.3 聚合SDK使用中各第三方平台注册APPID注意事项
 
-聚合包中在使用任意类型广告**获取广告时**会调用对应平台的**`registerAppid`** 的方法注册对应appid。
+聚合包中在使用任意类型广告**获取广告时**会调用对应平台的**registerAppid**的方法注册对应**appid**。
 
 所以如果原工程集成了相同的第三方广告平台，需要在获取广告时重新注册**appid**，以免被聚合SDK重置appid后导致无法获取广告。
 
@@ -31,7 +30,7 @@ pod 'GTMAdSDK'
 - 拖拽framework文件到 Xcode 工程内 (请勾选Copy items if needed选项) 
 - 头文件如下：
 
-```
+```yaml
 .
 ├── GTMAdSDK.h
 ├── GTMAdSDKConfig.h
@@ -46,7 +45,7 @@ pod 'GTMAdSDK'
 
 - 在Build Phases -> link with libraries 下加入如下依赖.
 
-```
+```haskell
 StoreKit.framework
 MobileCoreServices.framework
 WebKit.framework
@@ -75,11 +74,15 @@ libxml2.2.tbd
 
 手动集成聚合SDK时，因为聚合SDK依赖其他第三方平台的广告SDK，如穿山甲和广点通SDK，需要自行下载。
 
+[广点通](https://github.com/gdtmobsdk/GDTMobSDK) https://github.com/gdtmobsdk/GDTMobSDK
+
+[穿山甲](https://github.com/bytedance/Bytedance-UnionAD) https://github.com/bytedance/Bytedance-UnionAD
+
 或者联系商务同学由我们提供。
 
 ## 2. SDK 调用
 
-SDK支持**`开屏`**、**`Banner`**、**`激励视频`**、**`信息流模版(图文和视频)`**、**`插屏`**、**`全屏视频`**六种种类型的广告。
+SDK支持`开屏`、`Banner`、`激励视频`、`信息流模版(图文和视频)`、`插屏`、`全屏视频`六种种类型的广告。
 
 对应类型广告调用时导入对应的头文件。
 
@@ -87,19 +90,19 @@ SDK支持**`开屏`**、**`Banner`**、**`激励视频`**、**`信息流模版(�
 
 ##### 2.1.1 开屏广告对应头文件
 
-```objective-c
+```objectivec
 #import "GTMAdSplashAd.h"
 ```
 
 ##### 2.1.2 展示开屏广告期间使用变量保存开屏实例
 
-```objective-c
+```objectivec
 @property (nonatomic, strong) GTMAdSplashAd *splashAd;
 ```
 
-##### 2.1.3 创建开屏实例并设置**`代理`**
+##### 2.1.3 创建开屏实例并设置**代理**
 
-```objective-c
+```objectivec
 @property (nonatomic, strong) GTMAdSplashAd *splashAd;
 @property (nonatomic, strong) UILabel *launchView;
 
@@ -150,14 +153,14 @@ SDK支持**`开屏`**、**`Banner`**、**`激励视频`**、**`信息流模版(�
 }
 ```
 
-##### 2.1.4 开始加载开屏广告，分为**`全屏开屏`**广告和**`非全屏开屏广告`**
+##### 2.1.4 开始加载开屏广告，分为**全屏开屏**广告和**非全屏开屏广告**
 
-```objective-c
+```objectivec
 // 全屏广告
-[_splashAd loadAdAndShowInWindow:UIApplication.sharedApplication.keyWindow];
+[_splashAd loadAdAndShowInWindow:_window];
 ```
 
-```objective-c
+```objectivec
 // 创建底部视图
 UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, UIScreen.mainScreen.bounds.size.height / 4 * 3, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height / 4)];
 label.text = @"这是开屏广告底部视图";
@@ -167,12 +170,12 @@ label.font = [UIFont systemFontOfSize:30];
 label.textAlignment = NSTextAlignmentCenter;
         
 // 非全屏广告
-[_splashAd loadAdAndShowInWindow:UIApplication.sharedApplication.keyWindow withBottomView:label];
+[_splashAd loadAdAndShowInWindow:_window withBottomView:label];
 ```
 
 ##### 2.1.5 启动页和开屏广告衔接建议
 
-```objective-c
+```objectivec
     // 为了使启动页和开屏衔接 加载开屏的同时 在window或者window的rootViewController上放置一个和启动页LaunchScreen一样布局的view 在开屏加载成功或者失败时移除
     _launchView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.height)];
     _launchView.text = @"火眼聚合广告";
@@ -194,7 +197,7 @@ label.textAlignment = NSTextAlignmentCenter;
 
 ##### 2.1.6 通过代理处理广告事件
 
-```objective-c
+```objectivec
 // 实现代理
 <GTMAdSplashAdDelegate>
 
@@ -229,21 +232,21 @@ label.textAlignment = NSTextAlignmentCenter;
 
 ##### 2.2.1 Banner广告对应头文件
 
-```objective-c
+```objectivec
 #import "GTMAdBannerView.h"
 ```
 
 ##### 2.2.2 展示Banner广告期间使用变量保存Banner实例
 
-```objective-c
+```objectivec
 @property (nonatomic, strong) GTMAdBannerView *bannerView;
 ```
 
 ##### 2.2.3 创建Banner实例、设置代理并发起广告加载。
 
-```objective-c
+```objectivec
 [_bannerView removeFromSuperview];
-_bannerView = [[GTMAdBannerView alloc] initWithAppId:@"6A90F3261545" placementId:@"SDK9BB9F992461E" viewController:self];
+_bannerView = [[GTMAdBannerView alloc] initWithAppId:@"6A90F3261545" placementId:@"SDKF6E5574E69D3" adSize:adSize viewController:self interval:30];
 _bannerView.delegate = self;
 // 获取广告并显示
 [_bannerView loadAdAndShow];
@@ -254,7 +257,7 @@ _bannerView.frame = CGRectMake(0, UIScreen.mainScreen.bounds.size.height - 200, 
 
 ##### 2.2.4 通过代理处理广告事件
 
-```objective-c
+```objectivec
 // 实现代理
 <GTMAdBannerViewDelegate>
   
@@ -289,19 +292,19 @@ _bannerView.frame = CGRectMake(0, UIScreen.mainScreen.bounds.size.height - 200, 
 
 ##### 2.3.1 激励视频广告对应头文件
 
-```objective-c
+```objectivec
 #import "GTMAdRewardVideoAd.h"
 ```
 
 ##### 2.3.2 激励视频展示期间使用变量保存激励视频实例
 
-```objective-c
+```objectivec
 @property (nonatomic, strong) GTMAdRewardVideoAd *rewardVideoAd;
 ```
 
 ##### 2.3.3 创建实例、设置代理并发起广告请求
 
-```objective-c
+```objectivec
 _rewardVideoAd = [[GTMAdRewardVideoAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDK2B98AAC02AA0"];
 _rewardVideoAd.delegate = self;
 [_rewardVideoAd loadAd];
@@ -309,7 +312,7 @@ _rewardVideoAd.delegate = self;
 
 ##### 2.3.4 实现代理方法
 
-```objective-c
+```objectivec
 // 实现代理
 <GTMAdRewardVideoAdDelegate>
   
@@ -347,7 +350,7 @@ _rewardVideoAd.delegate = self;
 
 ##### 2.3.5 其中在激励视频缓存成功的代理回调中选择是否展示激励视频
 
-```objective-c
+```objectivec
 - (void)gtm_rewardVideoAdVideoDidLoad:(GTMAdRewardVideoAd *)rewardVideoAd {
     NSLog(@"----激励视频视频缓存成功----");
 		// 展示激励视频
@@ -363,14 +366,14 @@ _rewardVideoAd.delegate = self;
 
 ##### 2.4.1 模版广告对应头文件
 
-```objective-c
+```objectivec
 #import "GTMAdNativeExpressAd.h"
 #import "GTMAdNativeExpressAdView.h"
 ```
 
 ##### 2.4.2 创建实例并设置代理
 
-```objective-c
+```objectivec
 @property (nonatomic, strong) GTMAdNativeExpressAd *nativeExpressAd;
 @property (nonatomic, strong) NSMutableArray<GTMAdNativeExpressAdView *> *adViews;
 
@@ -387,7 +390,7 @@ for (UIView *adView in _adViews) {
 
 ##### 2.4.3 处理代理回调事件
 
-```objective-c
+```objectivec
 // 实现代理
 <GTMAdNativeExpressAdDelegate>
 
@@ -446,7 +449,7 @@ for (UIView *adView in _adViews) {
 
 ##### 2.4.4 在获取到广告模版视图**`GTMAdNativeExpressAdView`**后调用渲染方法进行渲染
 
-```objective-c
+```objectivec
 - (void)gtm_nativeExpressAdSuccessToLoad:(GTMAdNativeExpressAd *)nativeExpressAd views:(NSArray<GTMAdNativeExpressAdView *> *)views {
     
     NSLog(@"----原生模版广告加载成功----");
@@ -467,7 +470,7 @@ for (UIView *adView in _adViews) {
 
 ##### 2.4.5 模版视图渲染成功后，视图高度已经重新自适应调整，刷新界面。
 
-```objective-c
+```objectivec
 - (void)gtm_nativeExpressAdViewRenderSuccess:(GTMAdNativeExpressAdView *)nativeExpressAdView {
     
     NSLog(@"%@", [NSString stringWithFormat:@"----原生模版广告_0%lu渲染成功----", (unsigned long)[_adViews indexOfObject:nativeExpressAdView] + 1]);
@@ -477,7 +480,7 @@ for (UIView *adView in _adViews) {
 
 ##### 2.4.6 代理方法中收到模版广告被关闭回调后主动移除广告视图
 
-```objective-c
+```objectivec
 - (void)gtm_nativeExpressAdViewDidClose:(GTMAdNativeExpressAdView *)nativeExpressadView {
     NSLog(@"----关闭原生模版广告----");
     [nativeExpressadView removeFromSuperview];
@@ -492,13 +495,13 @@ for (UIView *adView in _adViews) {
 
 ##### 2.5.1 插屏广告对应头文件
 
-```objective-c
+```objectivec
 #import "GTMAdInterstitialAd.h"
 ```
 
 ##### 2.5.2 创建实例并设置代理
 
-```objective-c
+```objectivec
 @property (nonatomic, strong) GTMAdInterstitialAd *interstitialAd;
 
 _interstitialAd = [[GTMAdInterstitialAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDKAEBDA8F71997" adSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width - 60, UIScreen.mainScreen.bounds.size.width)];
@@ -508,7 +511,7 @@ _interstitialAd.delegate = self;
 
 ##### 2.5.3 处理代理回调事件
 
-```objective-c
+```objectivec
 // 实现代理
 <GTMAdInterstitialAdDelegate>
   
@@ -550,7 +553,7 @@ _interstitialAd.delegate = self;
 
 ##### 2.5.4 在广告加载成功后选择是否展示
 
-```objective-c
+```objectivec
 - (void)gtm_interstitialSuccessToLoadAd:(GTMAdInterstitialAd *)interstitialAd {
     NSLog(@"----插屏广告加载成功----");
     // 显示插屏广告
@@ -568,13 +571,13 @@ _interstitialAd.delegate = self;
 
 ##### 2.6.1 全屏视频广告对应头文件
 
-```objective-c
+```objectivec
 #import "GTMAdFullscreenVideoAd.h"
 ```
 
 ##### 2.6.2 创建实例并设置代理
 
-```objective-c
+```objectivec
 @property (nonatomic, strong) GTMAdFullscreenVideoAd *fullscreenVideoAd;
 
 _fullscreenVideoAd = [[GTMAdFullscreenVideoAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDKFD4783576C59"];
@@ -584,7 +587,7 @@ _fullscreenVideoAd.delegate = self;
 
 ##### 2.6.3 实现代理方法
 
-```objective-c
+```objectivec
 // 实现代理
 <GTMAdFullscreenVideoAdDelegate>
 
@@ -638,7 +641,7 @@ _fullscreenVideoAd.delegate = self;
 
 ##### 2.6.4 在广告渲染成功后选择是否展示
 
-```objective-c
+```objectivec
 - (void)gtm_fullscreenVideoAdViewRenderSuccess:(GTMAdFullscreenVideoAd *)fullscreenVideoAd {
     
     NSLog(@"----全屏视频广告渲染成功----");
@@ -654,8 +657,32 @@ _fullscreenVideoAd.delegate = self;
 
 
 
+## 3. 更新日志
 
-## 3. 其它
+###  1.0.4 版本
 
-- 所有类型广告中，需要传入的**`ViewController`**是用来展示广告详情页的，在广告展示期间，请保持**`ViewController`**存活。
+- 添加Sigmob广告平台。
+- 开屏广告针对广点通添加背景颜色和背景图片设置。
+- 信息流模版针对广点通添加非Wi-Fi环境是否自动播放、自动播放时是否静音、视频详情页是否静音设置。
+
+### 1.0.3 版本
+
+- 调整穿山甲开屏广告加载完成和渲染完成的回调时机。
+
+### 1.0.2 版本
+
+- 添加全屏视频和插屏视频广告。
+
+### 1.0.1 版本
+
+- 添加开屏、banner、激励视频广告。
+
+
+
+## 4. 常见问题
+
+- 所有类型广告中，需要传入的`ViewController`是用来展示广告详情页的，在广告展示期间，请保持`ViewController`存活。
+- 开屏广告中穿山甲上游所返回的广告是展示在传入的容器`window`的`RootViewController`的`view`上，与广点通和其他平台展示在容器`window`有区别。如果有影响到工程内其他业务逻辑，请不要配置穿山甲广告或者只配置穿山甲广告。
+- 全屏视频中sigmob平台所展示的广告在点击跳过按钮之后，依然回调播放完成代理方法。所以不能把视频播放完成回调作为用户是否完整观看视频的依据。如果不能满足你的业务逻辑要求，请不要配置sigmob平台的广告，其他平台广告点击跳过按钮不会回调视频播放完成方法。
+- 开屏和激励视频和全屏视频广告中sigmob平台所返回的广告，在被点击展示广告详情页之后，无法回调广告详情页被关闭的回调。
 - 更多关于接入方面的问题请参考iOS接入demo或者联系商务同学。

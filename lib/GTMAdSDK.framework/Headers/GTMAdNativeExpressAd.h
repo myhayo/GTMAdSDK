@@ -43,6 +43,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<GTMAdNativeExpressAdDelegate> delegate;
 
+/// 非 WiFi 网络，是否自动播放。默认 NO。loadAd 前设置。 （目前只针对广点通上游广告）
+@property (nonatomic, assign) BOOL videoAutoPlayOnWWAN;
+
+/// 自动播放时，是否静音。loadAd 前设置。（目前只针对广点通上游广告）
+@property (nonatomic, assign) BOOL videoMuted;
+
+/// 视频详情页播放时是否静音。默认NO。loadAd 前设置。（目前只针对广点通上游广告）
+@property (nonatomic, assign) BOOL detailPageVideoMuted;
+
 /// 初始化
 /// @param appId appId
 /// @param placementId 广告位id

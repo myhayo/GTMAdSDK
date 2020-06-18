@@ -15,6 +15,7 @@
 #import "GTMAdSDK/GTMAdNativeExpressAdView.h"
 #import "GTMAdSDK/GTMAdInterstitialAd.h"
 #import "GTMAdSDK/GTMAdFullscreenVideoAd.h"
+#import <AdSupport/AdSupport.h>
 
 @interface GTMADSDKViewController () <UITableViewDelegate, UITableViewDataSource, GTMAdSplashAdDelegate, GTMAdBannerViewDelegate, GTMAdRewardVideoAdDelegate, GTMAdNativeExpressAdDelegate, GTMAdInterstitialAdDelegate, GTMAdFullscreenVideoAdDelegate>
 
@@ -62,6 +63,8 @@
     NSLog(@"=====sdk version ===>  %@", [GTMAdSDKConfig sdkVersion]);
     NSLog(@"=====gdt sdk version ===>  %@", [GTMAdSDKConfig gdtSdkVersion]);
     NSLog(@"=====tt sdk version ===>  %@", [GTMAdSDKConfig ttSdkVersion]);
+    NSLog(@"=====sigmob sdk version ===> %@", [GTMAdSDKConfig sigmobSdkVersion]);
+    NSLog(@"=====idfa ===> %@", [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -199,6 +202,9 @@
         // 高度给0 让模版在render之后自适应
         _nativeExpressAd = [[GTMAdNativeExpressAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDKD8D7CC6361DA" adSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width, 0)];
         _nativeExpressAd.delegate = self;
+        _nativeExpressAd.videoAutoPlayOnWWAN = YES;
+        _nativeExpressAd.videoMuted = YES;
+        _nativeExpressAd.detailPageVideoMuted = NO;
         [_nativeExpressAd loadAd:2];
         for (UIView *adView in _adViews) {
             [adView removeFromSuperview];

@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 开屏广告关闭回调
 - (void)gtm_splashAdDidClose:(GTMAdSplashAd *)splashAd;
 
-/// 点击后打开的广告页被关闭
+/// 点击后打开的广告页被关闭 (注意1.0.4版本之后 某些上游广告弹出的广告页被关闭时无法获取回调)
 - (void)gtm_splashAdDidCloseOtherController:(GTMAdSplashAd *)splashAd;
 
 @end
@@ -38,6 +38,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GTMAdSplashAd : NSObject
 
 @property (nonatomic, weak) id<GTMAdSplashAdDelegate> delegate;
+
+/// 开屏广告的背景图片 可以设置背景图片作为开屏加载时的默认背景 （目前只针对广点通上游广告）
+@property (nonatomic, strong) UIImage *backgroundImage;
+
+/// 开屏广告的背景色 可以设置开屏图片来作为开屏加载时的背景色 （目前只针对广点通上游广告）
+@property (nonatomic, copy) UIColor *backgroundColor;
 
 /// 初始化开屏广告
 /// @param appId appId
