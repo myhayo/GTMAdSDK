@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'GTMAdSDK_Example' do
+  pod 'GTMAdSDK', :path => '../'
+
+  target 'GTMAdSDK_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
