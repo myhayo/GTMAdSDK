@@ -227,7 +227,6 @@
     }
 }
 
-
 #pragma - mark 开屏广告
 
 - (void)gtm_splashAdLoadSuccess:(GTMAdSplashAd *)splashAd {

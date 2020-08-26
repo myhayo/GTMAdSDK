@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 插屏广告将要展示
 - (void)gtm_interstitialWillVisible:(GTMAdInterstitialAd *)interstitialAd;
 
-/// 插屏广告展示失败
+/// 插屏广告展示失败(接口废弃，统一错误回调在gtm_interstitialFailToLoadAd中)
 - (void)gtm_interstitialFailToPresent:(GTMAdInterstitialAd *)interstitialAd;
 
 /// 插屏广告点击回调(一些上游广告在点击展示详情后自动关闭 该回调在didClose之后调用)
