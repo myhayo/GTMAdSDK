@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GTMAdSDK'
-  s.version          = '1.0.6'
+  s.version          = '1.0.8'
   s.summary          = '火眼聚合广告SDK'
 
 # This description is used to generate tags and improve search results.
@@ -33,9 +33,9 @@ Pod::Spec.new do |s|
   s.ios.resource = 'lib/GTMAdSDK.framework/MHAdResource.bundle'
   s.xcconfig     = {'OTHER_LDFLAGS' => '-ObjC'}
   s.static_framework = true
-  s.dependency 'GDTMobSDK', '~> 4.11.10'
-  s.dependency 'Bytedance-UnionAD', '~> 3.2.0.1'
-  s.dependency 'SigmobAd-iOS', '~> 2.20.1'
+  s.dependency 'GDTMobSDK'
+  s.dependency 'Bytedance-UnionAD'
+  s.dependency 'SigmobAd-iOS'
   valid_archs = ['armv7', 'armv7s', 'x86_64', 'arm64']
   s.xcconfig = {
     'VALID_ARCHS' =>  valid_archs.join(' '),

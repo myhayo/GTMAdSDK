@@ -1,0 +1,728 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+    <title>火眼聚合广告 SDK v1.0.8 接入文档 （for iOS</title>
+    <link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+
+</head>
+<section id="nice" data-tool="mdnice编辑器" data-website="https://www.mdnice.com" style="font-size: 16px; color: black; width: 800px; margin: 0 auto; line-height: 1.6; word-spacing: 0px; letter-spacing: 0px; word-break: break-word; word-wrap: break-word; text-align: left; font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+    <h1 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 24px;"><span class="prefix" style="display: none;"></span><span class="content">火眼聚合广告 SDK v1.0.8 接入文档 （for iOS）</span><span class="suffix"></span></h1>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;"></p>
+    <div class="table-of-contents" data-tool="mdnice编辑器">
+        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+            <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1. SDK 集成</a>
+                <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: square;">
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.1 CocoaPods集成</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.2 聚合包使用第三方平台SDK版本</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.3 聚合SDK使用中各第三方平台注册APPID注意事项</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.4 SDK手动集成</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.5 集成过程中注意事项</a></li>
+                </ul>
+            </li>
+            <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">2. SDK 调用</a>
+                <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: square;">
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">2.1 开屏广告</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">2.2 Banner广告</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">2.3 激励视频广告</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">2.4 信息流模版广告(图文和视频)</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">2.5 插屏广告</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">2.6 全屏视频广告</a></li>
+                </ul>
+            </li>
+            <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">3. 更新日志</a>
+                <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: square;">
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.0.8版本</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.0.6版本</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.0.5 版本</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.0.4 版本</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.0.3 版本</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.0.2 版本</a></li>
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.0.1 版本</a></li>
+                </ul>
+            </li>
+            <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">4. 常见问题</a></li>
+        </ul>
+    </div>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;"></p>
+    <h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 22px;"><span class="prefix" style="display: none;"></span><span class="content">1. SDK 集成</span><span class="suffix"></span></h2>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.1 CocoaPods集成</span><span class="suffix" style="display: none;"></span></h3>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;">pod <span class="hljs-string" style="color: #c41a16; line-height: 26px;">'GTMAdSDK'</span>
+    <span/></code></pre>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.2 聚合包使用第三方平台SDK版本</span><span class="suffix" style="display: none;"></span></h3>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">如果原工程内自行接入第三方广告SDK，请尽量使用下列版本</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">聚合版本1.0.6对应：</p>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">穿山甲SDK版本：<strong style="font-weight: bold; color: black;">3.2.0.1</strong></section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">广点通SDK版本：<strong style="font-weight: bold; color: black;">4.11.10</strong></section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">sigmob SDK版本：<strong style="font-weight: bold; color: black;">2.20.1</strong></section>
+        </li>
+    </ul>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">聚合版本1.0.8对应：</p>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">穿山甲SDK版本：<strong style="font-weight: bold; color: black;">3.2.0.1</strong></section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">广点通SDK版本：<strong style="font-weight: bold; color: black;">4.12.1</strong></section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">sigmob SDK版本：<strong style="font-weight: bold; color: black;">2.23.1</strong></section>
+        </li>
+    </ul>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">如果是通过pod集成，pod配置文件里未对上游广告SDK限制了版本，pod-install时会自动依赖最新版本。</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">如果pod导入的第三方SDK版本超过聚合版本里使用的第三方SDK版本时，有可能出现不兼容现象，此时请修改pod配置文件(GTMAdSDK.podspec)，在文件中对第三方SDK进行版本限制。</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">可以fork本仓库部署到自己私有的pod仓库，方便修改第三方SDK依赖。</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">如果是手动集成则需注意对应版本。</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">这里之所以需要限制版本是因为穿山甲的sdk在版本迭代过程中做了比较大的改动，相应的火眼聚合sdk也需要进行迭代。</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">一般来说不需要对版本进行限制时，文档中会进行说明，目前1.0.5和1.0.6需要严格选择穿山甲的版本。</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">1.0.5版本依赖穿山甲版本为2.9.5.8，1.0.6版本对应穿山甲版本为3.2.0.1以上。</p>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.3 聚合SDK使用中各第三方平台注册APPID注意事项</span><span class="suffix" style="display: none;"></span></h3>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">聚合包中在使用任意类型广告<strong style="font-weight: bold; color: black;">获取广告时</strong>会调用对应平台的<strong style="font-weight: bold; color: black;">registerAppid</strong>的方法注册对应<strong style="font-weight: bold; color: black;">appid</strong>。</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">所以如果原工程集成了相同的第三方广告平台，需要在获取广告时重新注册<strong style="font-weight: bold; color: black;">appid</strong>，以免被聚合SDK重置appid后导致无法获取广告。</p>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.4 SDK手动集成</span><span class="suffix" style="display: none;"></span></h3>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">下载 GTMAdSDK，找到 lib 文件夹，SDK的framework文件在这个文件夹下</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">拖拽framework文件到 Xcode 工程内 (请勾选Copy items if needed选项)</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">第三方平台依赖包请自行下下载(下方有第三方包下载地址)或者询问运营同学获取。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">头文件如下：</section>
+        </li>
+    </ul>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-string" style="color: #c41a16; line-height: 26px;">.</span>
+    <span/><span class="hljs-string" style="color: #c41a16; line-height: 26px;">├──</span> <span class="hljs-string" style="color: #c41a16; line-height: 26px;">GTMAdSDK.h</span>
+    <span/><span class="hljs-string" style="color: #c41a16; line-height: 26px;">├──</span> <span class="hljs-string" style="color: #c41a16; line-height: 26px;">GTMAdSDKConfig.h</span>
+    <span/><span class="hljs-string" style="color: #c41a16; line-height: 26px;">├──</span> <span class="hljs-string" style="color: #c41a16; line-height: 26px;">GTMAdSplashAd.h</span>
+    <span/><span class="hljs-string" style="color: #c41a16; line-height: 26px;">├──</span> <span class="hljs-string" style="color: #c41a16; line-height: 26px;">GTMAdBannerView.h</span>
+    <span/><span class="hljs-string" style="color: #c41a16; line-height: 26px;">├──</span> <span class="hljs-string" style="color: #c41a16; line-height: 26px;">GTMAdRewardVideoAd.h</span>
+    <span/><span class="hljs-string" style="color: #c41a16; line-height: 26px;">├──</span> <span class="hljs-string" style="color: #c41a16; line-height: 26px;">GTMAdNativeExpressAd.h</span>
+    <span/><span class="hljs-string" style="color: #c41a16; line-height: 26px;">├──</span> <span class="hljs-string" style="color: #c41a16; line-height: 26px;">GTMAdNativeExpressAdView.h</span>
+    <span/><span class="hljs-string" style="color: #c41a16; line-height: 26px;">├──</span> <span class="hljs-string" style="color: #c41a16; line-height: 26px;">GTMAdInterstitialAd.h</span>
+    <span/><span class="hljs-string" style="color: #c41a16; line-height: 26px;">└──</span> <span class="hljs-string" style="color: #c41a16; line-height: 26px;">GTMAdFullscreenVideoAd.h</span>
+    <span/></code></pre>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">在Build Phases -&gt; link with libraries 下加入如下依赖.</section>
+        </li>
+    </ul>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-type" style="color: #5c2699; line-height: 26px;">StoreKit</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">MobileCoreServices</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">WebKit</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">MediaPlayer</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">MessageUI</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">SafariServices</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">CoreMedia</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">CoreLocation</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">AVFoundation</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">CoreTelephony</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">SystemConfiguration</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">AdSupport</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">CoreMotion</span>.framework
+    <span/><span class="hljs-type" style="color: #5c2699; line-height: 26px;">Accelerate</span>.framework
+    <span/><span class="hljs-title" style="color: #1c00cf; line-height: 26px;">libresolv</span><span class="hljs-number" style="color: #1c00cf; line-height: 26px;">.9</span>.tbd
+    <span/><span class="hljs-title" style="color: #1c00cf; line-height: 26px;">libc</span>++.tbd
+    <span/><span class="hljs-title" style="color: #1c00cf; line-height: 26px;">libz</span>.tbd
+    <span/><span class="hljs-title" style="color: #1c00cf; line-height: 26px;">libsqlite3</span>.tbd
+    <span/><span class="hljs-title" style="color: #1c00cf; line-height: 26px;">libxml2</span><span class="hljs-number" style="color: #1c00cf; line-height: 26px;">.2</span>.tbd
+    <span/><span class="hljs-title" style="color: #1c00cf; line-height: 26px;">libbz2</span>.tbd
+    <span/></code></pre>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">如果以上依赖库增加完仍旧报错，请添加ImageIO.framework。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">Build Setting --&gt; Linking --&gt; Other Linker Flag 设置 增加 <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">-ObjC</code>                linker flag</section>
+        </li>
+    </ul>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.5 集成过程中注意事项</span><span class="suffix" style="display: none;"></span></h3>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">手动集成聚合SDK时，因为聚合SDK依赖其他第三方平台的广告SDK，如穿山甲和广点通SDK、sigmob。</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">第三方广告平台的包下载地址。</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;"><a href="https://github.com/gdtmobsdk/GDTMobSDK" style="text-decoration: none; color: #1e6bb8; word-wrap: break-word; font-weight: bold; border-bottom: 1px solid #1e6bb8;">广点通</a> https://github.com/gdtmobsdk/GDTMobSDK</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;"><a href="https://github.com/bytedance/Bytedance-UnionAD" style="text-decoration: none; color: #1e6bb8; word-wrap: break-word; font-weight: bold; border-bottom: 1px solid #1e6bb8;">穿山甲</a> https://github.com/bytedance/Bytedance-UnionAD</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;"><a href="https://cocoapods.org/pods/SigmobAd-iOS" style="text-decoration: none; color: #1e6bb8; word-wrap: break-word; font-weight: bold; border-bottom: 1px solid #1e6bb8;">sigmob</a> https://cocoapods.org/pods/SigmobAd-iOS</p>
+    <h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 22px;"><span class="prefix" style="display: none;"></span><span class="content">2. SDK 调用</span><span class="suffix"></span></h2>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">SDK支持<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">开屏</code>、
+        <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">Banner</code>、
+        <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">激励视频</code>、
+        <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">信息流模版(图文和视频)</code>、
+        <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">插屏</code>、
+        <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">全屏视频</code>六种种类型的广告。</p>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">对应类型广告调用时导入对应的头文件。</p>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">2.1 开屏广告</span><span class="suffix" style="display: none;"></span></h3>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.1.1 开屏广告对应头文件</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-meta" style="color: #643820; line-height: 26px;">#import <span class="hljs-meta-string" style="color: #c41a16; line-height: 26px;">"GTMAdSplashAd.h"</span></span>
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.1.2 展示开屏广告期间使用变量保存开屏实例</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">@property</span> (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">nonatomic</span>, <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">strong</span>) GTMAdSplashAd *splashAd;
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.1.3 创建开屏实例并设置<strong style="font-weight: bold; color: black;">代理</strong></span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">@property</span> (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">nonatomic</span>, <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">strong</span>) GTMAdSplashAd *splashAd;
+    <span/><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">@property</span> (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">nonatomic</span>, <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">strong</span>) <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UILabel</span> *launchView;
+    <span/>
+    <span/>- (<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">BOOL</span>)application:(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSDictionary</span> *)launchOptions
+    <span/>{
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// Override point for customization after application launch.</span>
+    <span/>    
+    <span/>    _splashAd = [[GTMAdSplashAd alloc] initWithAppId:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"6A90F3261545"</span> placementId:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"SDK494F6908BAD1"</span>];
+    <span/>    _splashAd.delegate = <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>;
+    <span/>    
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">/*
+    <span/>    if ((arc4random() % 10) % 2 == 0) {
+    <span/>        // 全屏广告
+    <span/>        [_splashAd loadAdAndShowInWindow:UIApplication.sharedApplication.keyWindow];
+    <span/>        return;
+    <span/>    }*/</span>
+    <span/>    
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 创建底部视图(用作非全屏开屏广告)</span>
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UILabel</span> *label = [[<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UILabel</span> alloc] initWithFrame:<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">CGRectMake</span>(<span class="hljs-number" style="color: #1c00cf; line-height: 26px;">0</span>, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.height / <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">4</span> * <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">3</span>, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.width, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.height / <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">4</span>)];
+    <span/>    label.text = <span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"这是开屏广告底部视图"</span>;
+    <span/>    label.textColor = [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIColor</span> blackColor];
+    <span/>    label.backgroundColor = [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIColor</span> whiteColor];
+    <span/>    label.font = [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIFont</span> systemFontOfSize:<span class="hljs-number" style="color: #1c00cf; line-height: 26px;">30</span>];
+    <span/>    label.textAlignment = <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSTextAlignmentCenter</span>;
+    <span/>    
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 非全屏广告</span>
+    <span/>    [_splashAd loadAdAndShowInWindow:_window withBottomView:label];
+    <span/>    
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 为了使启动页和开屏衔接 加载开屏的同时 在window或者window的rootViewController上放置一个和启动页LaunchScreen一样布局的view 在开屏加载成功或者失败时移除</span>
+    <span/>    _launchView = [[<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UILabel</span> alloc] initWithFrame:<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">CGRectMake</span>(<span class="hljs-number" style="color: #1c00cf; line-height: 26px;">0</span>, <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">0</span>, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.width, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.height)];
+    <span/>    _launchView.text = <span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"火眼聚合广告"</span>;
+    <span/>    _launchView.textColor = [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIColor</span> blackColor];
+    <span/>    _launchView.backgroundColor = [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIColor</span> whiteColor];
+    <span/>    _launchView.font = [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIFont</span> systemFontOfSize:<span class="hljs-number" style="color: #1c00cf; line-height: 26px;">20</span>];
+    <span/>    _launchView.textAlignment = <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSTextAlignmentCenter</span>;
+    <span/>    
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 1. 直接在rootVC的view上添加</span>
+    <span/><span class="hljs-comment" style="color: #007400; line-height: 26px;">//    [_window.rootViewController.view addSubview:_launchView];</span>
+    <span/>    
+    <span/>    
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 2.在window上添加</span>
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 如果不想在rootVC上添加这个仿启动页布局 可以在window上添加 但是需要注意 rootVC的view在显示之前是没有添加在window上的</span>
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 所以如果想要_launchView在rootVC的view的上层 需要先完成rootVC的加载</span>
+    <span/>    [_window makeKeyAndVisible];
+    <span/>    [_window addSubview:_launchView];
+    <span/>    
+    <span/>    <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">return</span> <span class="hljs-literal" style="color: #aa0d91; line-height: 26px;">YES</span>;
+    <span/>}
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.1.4 开始加载开屏广告，分为<strong style="font-weight: bold; color: black;">全屏开屏</strong>广告和<strong style="font-weight: bold; color: black;">非全屏开屏广告</strong></span><span class="suffix"
+            style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-comment" style="color: #007400; line-height: 26px;">// 全屏广告</span>
+    <span/>[_splashAd loadAdAndShowInWindow:_window];
+    <span/></code></pre>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-comment" style="color: #007400; line-height: 26px;">// 创建底部视图</span>
+    <span/><span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UILabel</span> *label = [[<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UILabel</span> alloc] initWithFrame:<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">CGRectMake</span>(<span class="hljs-number" style="color: #1c00cf; line-height: 26px;">0</span>, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.height / <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">4</span> * <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">3</span>, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.width, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.height / <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">4</span>)];
+    <span/>label.text = <span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"这是开屏广告底部视图"</span>;
+    <span/>label.textColor = [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIColor</span> blackColor];
+    <span/>label.backgroundColor = [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIColor</span> whiteColor];
+    <span/>label.font = [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIFont</span> systemFontOfSize:<span class="hljs-number" style="color: #1c00cf; line-height: 26px;">30</span>];
+    <span/>label.textAlignment = <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSTextAlignmentCenter</span>;
+    <span/>        
+    <span/><span class="hljs-comment" style="color: #007400; line-height: 26px;">// 非全屏广告</span>
+    <span/>[_splashAd loadAdAndShowInWindow:_window withBottomView:label];
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.1.5 启动页和开屏广告衔接建议</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;">    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 为了使启动页和开屏衔接 加载开屏的同时 在window或者window的rootViewController上放置一个和启动页LaunchScreen一样布局的view 在开屏加载成功或者失败时移除</span>
+    <span/>    _launchView = [[<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UILabel</span> alloc] initWithFrame:<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">CGRectMake</span>(<span class="hljs-number" style="color: #1c00cf; line-height: 26px;">0</span>, <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">0</span>, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.width, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.height)];
+    <span/>    _launchView.text = <span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"火眼聚合广告"</span>;
+    <span/>    _launchView.textColor = [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIColor</span> blackColor];
+    <span/>    _launchView.backgroundColor = [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIColor</span> whiteColor];
+    <span/>    _launchView.font = [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIFont</span> systemFontOfSize:<span class="hljs-number" style="color: #1c00cf; line-height: 26px;">20</span>];
+    <span/>    _launchView.textAlignment = <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSTextAlignmentCenter</span>;
+    <span/>    
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 1. 直接在rootVC的view上添加</span>
+    <span/><span class="hljs-comment" style="color: #007400; line-height: 26px;">//    [_window.rootViewController.view addSubview:_launchView];</span>
+    <span/>    
+    <span/>    
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 2.在window上添加</span>
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 如果不想在rootVC上添加这个仿启动页布局 可以在window上添加 但是需要注意 rootVC的view在显示之前是没有添加在window上的</span>
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 所以如果想要_launchView在rootVC的view的上层 需要先完成rootVC的加载</span>
+    <span/>    [_window makeKeyAndVisible];
+    <span/>    [_window addSubview:_launchView];
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.1.6 通过代理处理广告事件</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-comment" style="color: #007400; line-height: 26px;">// 实现代理</span>
+    <span/>&lt;GTMAdSplashAdDelegate&gt;
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_splashAdLoadSuccess:(GTMAdSplashAd *)splashAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"-----开屏广告素材下载成功----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_splashAdSuccessPresentScreen:(GTMAdSplashAd *)splashAd {
+    <span/>    [_launchView removeFromSuperview];
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"-----开屏广告展示成功----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_splashAd:(GTMAdSplashAd *)splashAd didFailWithError:(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSError</span> *)error {
+    <span/>    [_launchView removeFromSuperview];
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"-----开屏广告展示失败 [error=&gt;%@] ----"</span>, error);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_splashAdDidClick:(GTMAdSplashAd *)splashAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"-----点击开屏广告----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_splashAdDidCloseOtherController:(GTMAdSplashAd *)splashAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"-----打开的开屏广告页被关闭----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_splashAdDidClose:(GTMAdSplashAd *)splashAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----开屏广告结束----"</span>);
+    <span/>}
+    <span/></code></pre>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">2.2 Banner广告</span><span class="suffix" style="display: none;"></span></h3>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.2.1 Banner广告对应头文件</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-meta" style="color: #643820; line-height: 26px;">#import <span class="hljs-meta-string" style="color: #c41a16; line-height: 26px;">"GTMAdBannerView.h"</span></span>
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.2.2 展示Banner广告期间使用变量保存Banner实例</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">@property</span> (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">nonatomic</span>, <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">strong</span>) GTMAdBannerView *bannerView;
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.2.3 创建Banner实例、设置代理并发起广告加载。</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;">[_bannerView removeFromSuperview];
+    <span/>_bannerView = [[GTMAdBannerView alloc] initWithAppId:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"6A90F3261545"</span> placementId:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"SDKF6E5574E69D3"</span> adSize:adSize viewController:<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span> interval:<span class="hljs-number" style="color: #1c00cf; line-height: 26px;">30</span>];
+    <span/>_bannerView.delegate = <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>;
+    <span/><span class="hljs-comment" style="color: #007400; line-height: 26px;">// 获取广告并显示</span>
+    <span/>[_bannerView loadAdAndShow];
+    <span/>        
+    <span/>_bannerView.frame = <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">CGRectMake</span>(<span class="hljs-number" style="color: #1c00cf; line-height: 26px;">0</span>, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.height - <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">200</span>, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.width, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.width / <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">6.4</span>);
+    <span/>[<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>.view addSubview:_bannerView];
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.2.4 通过代理处理广告事件</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-comment" style="color: #007400; line-height: 26px;">// 实现代理</span>
+    <span/>&lt;GTMAdBannerViewDelegate&gt;
+    <span/>  
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_bannerViewDidLoad:(GTMAdBannerView *)bannerView {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"-----banner广告素材下载成功----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_bannerViewDidBecomVisible:(GTMAdBannerView *)bannerView {
+    <span/>    [_loadingView stopAnimating];
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"-----banner广告显示成功----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_bannerView:(GTMAdBannerView *)bannerView didLoadFailWithError:(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSError</span> *)error {
+    <span/>    [_loadingView stopAnimating];
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"-----banner广告展示失败 [error=&gt;%@] ----"</span>, error);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_bannerViewDidClick:(GTMAdBannerView *)bannerView {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"-----点击banner广告----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_bannerViewDidCloseOtherController:(GTMAdBannerView *)bannerView {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"-----点击banner广告后打开的广告关闭----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_bannerViewWillClose:(GTMAdBannerView *)bannerView {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"-----banner广告被关闭----"</span>);
+    <span/>}
+    <span/></code></pre>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">2.3 激励视频广告</span><span class="suffix" style="display: none;"></span></h3>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.3.1 激励视频广告对应头文件</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-meta" style="color: #643820; line-height: 26px;">#import <span class="hljs-meta-string" style="color: #c41a16; line-height: 26px;">"GTMAdRewardVideoAd.h"</span></span>
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.3.2 激励视频展示期间使用变量保存激励视频实例</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">@property</span> (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">nonatomic</span>, <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">strong</span>) GTMAdRewardVideoAd *rewardVideoAd;
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.3.3 创建实例、设置代理并发起广告请求</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;">_rewardVideoAd = [[GTMAdRewardVideoAd alloc] initWithAppId:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"6A90F3261545"</span> placementId:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"SDK2B98AAC02AA0"</span>];
+    <span/>_rewardVideoAd.delegate = <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>;
+    <span/>[_rewardVideoAd loadAd];
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.3.4 实现代理方法</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-comment" style="color: #007400; line-height: 26px;">// 实现代理</span>
+    <span/>&lt;GTMAdRewardVideoAdDelegate&gt;
+    <span/>  
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_rewardVideoAdDidLoad:(GTMAdRewardVideoAd *)rewardVideoAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----激励视频素材加载成功----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_rewardVideoAdVideoDidLoad:(GTMAdRewardVideoAd *)rewardVideoAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----激励视频视频缓存成功----"</span>);
+    <span/>    [rewardVideoAd showAdFromRootViewController:<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>];
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_rewardVideoAdWillVisible:(GTMAdRewardVideoAd *)rewardVideoAd {
+    <span/>    [_loadingView stopAnimating];
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----激励视频播放页显示----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_rewardVideoAdDidClick:(GTMAdRewardVideoAd *)rewardVideoAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----点击激励视频播放页信息----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_rewardVideoAdDidClose:(GTMAdRewardVideoAd *)rewardVdieoAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----激励视频播放页关闭----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_rewardVideoAdDidPlayFinish:(GTMAdRewardVideoAd *)rewardVideoAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----激励视频播放完成----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_rewardVideoAd:(GTMAdRewardVideoAd *)rewardVideoAd didFailWithError:(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSError</span> *)error {
+    <span/>    [_loadingView stopAnimating];
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----激励视频广告展示失败 [error=&gt;%@] ----"</span>, error);
+    <span/>}
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.3.5 其中在激励视频缓存成功的代理回调中选择是否展示激励视频</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;">- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_rewardVideoAdVideoDidLoad:(GTMAdRewardVideoAd *)rewardVideoAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----激励视频视频缓存成功----"</span>);
+    <span/>  <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 展示激励视频</span>
+    <span/>    [rewardVideoAd showAdFromRootViewController:<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>];
+    <span/>  <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 可根据业务逻辑选择在之后展示 一般有效期为半小时 展示之前使用 isValid 判断广告是否有效再展示</span>
+    <span/>   <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">if</span> ([rewardVideoAd isValid]) {
+    <span/>      
+    <span/>    }
+    <span/>}
+    <span/></code></pre>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">2.4 信息流模版广告(图文和视频)</span><span class="suffix" style="display: none;"></span></h3>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.4.1 模版广告对应头文件</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-meta" style="color: #643820; line-height: 26px;">#import <span class="hljs-meta-string" style="color: #c41a16; line-height: 26px;">"GTMAdNativeExpressAd.h"</span></span>
+    <span/><span class="hljs-meta" style="color: #643820; line-height: 26px;">#import <span class="hljs-meta-string" style="color: #c41a16; line-height: 26px;">"GTMAdNativeExpressAdView.h"</span></span>
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.4.2 创建实例并设置代理</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">@property</span> (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">nonatomic</span>, <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">strong</span>) GTMAdNativeExpressAd *nativeExpressAd;
+    <span/><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">@property</span> (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">nonatomic</span>, <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">strong</span>) <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSMutableArray</span>&lt;GTMAdNativeExpressAdView *&gt; *adViews;
+    <span/>
+    <span/><span class="hljs-comment" style="color: #007400; line-height: 26px;">// 高度给0 让模版在render之后自适应</span>
+    <span/>_nativeExpressAd = [[GTMAdNativeExpressAd alloc] initWithAppId:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"6A90F3261545"</span> placementId:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"SDKFB0E89AEC0B4"</span> adSize:<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">CGSizeMake</span>(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.width, <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">0</span>)];
+    <span/>_nativeExpressAd.delegate = <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>;
+    <span/>[_nativeExpressAd loadAd:<span class="hljs-number" style="color: #1c00cf; line-height: 26px;">2</span>];
+    <span/>
+    <span/><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">for</span> (<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIView</span> *adView <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">in</span> _adViews) {
+    <span/> [adView removeFromSuperview];
+    <span/>}
+    <span/>[_adViews removeAllObjects];
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.4.3 处理代理回调事件</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-comment" style="color: #007400; line-height: 26px;">// 实现代理</span>
+    <span/>&lt;GTMAdNativeExpressAdDelegate&gt;
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_nativeExpressAdSuccessToLoad:(GTMAdNativeExpressAd *)nativeExpressAd views:(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSArray</span>&lt;GTMAdNativeExpressAdView *&gt; *)views {
+    <span/>    
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----原生模版广告加载成功----"</span>);
+    <span/>    
+    <span/>    [_adViews removeAllObjects];
+    <span/>    
+    <span/>    <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">for</span> (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">int</span> i = <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">0</span>; i &lt; views.count; i++) {
+    <span/>        GTMAdNativeExpressAdView *adView = views[i];
+    <span/>        <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 渲染广告视图</span>
+    <span/>        [adView rednerWithController:<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>];
+    <span/>        [_adViews addObject:adView];
+    <span/>        
+    <span/>    }
+    <span/>    
+    <span/>    [_tableView reloadData];
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_nativeExpressAdViewRenderSuccess:(GTMAdNativeExpressAdView *)nativeExpressAdView {
+    <span/>    
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"%@"</span>, [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSString</span> stringWithFormat:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----原生模版广告_0%lu渲染成功----"</span>, (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">unsigned</span> <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">long</span>)[_adViews indexOfObject:nativeExpressAdView] + <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">1</span>]);
+    <span/>    [_tableView reloadData];
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_nativeExpressAdViewWillShow:(GTMAdNativeExpressAdView *)nativeExpressAdView {
+    <span/>    [_loadingView stopAnimating];
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----原生模版广告显示成功----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_nativeExpressAdViewDidClick:(GTMAdNativeExpressAdView *)nativeExpressAdView {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----点击原生模版广告----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_nativeExpressAdViewDidClose:(GTMAdNativeExpressAdView *)nativeExpressadView {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----关闭原生模版广告----"</span>);
+    <span/>    [nativeExpressadView removeFromSuperview];
+    <span/>    [_adViews removeObject:nativeExpressadView];
+    <span/>    [_tableView reloadData];
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_nativeExpressAdFailToLoad:(GTMAdNativeExpressAd *)nativeExpressAd error:(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSError</span> *)error {
+    <span/>    [_loadingView stopAnimating];
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----原生模版广告加载失败----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_nativeExpressAdViewRenderFail:(GTMAdNativeExpressAdView *)nativeExpressAdView {
+    <span/>    [_loadingView stopAnimating];
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----原生模版广告渲染失败----"</span>);
+    <span/>    [nativeExpressAdView removeFromSuperview];
+    <span/>    [_adViews removeObject:nativeExpressAdView];
+    <span/>    [_tableView reloadData];
+    <span/>}
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.4.4 在获取到广告模版视图**<code>GTMAdNativeExpressAdView</code>**后调用渲染方法进行渲染</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;">- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_nativeExpressAdSuccessToLoad:(GTMAdNativeExpressAd *)nativeExpressAd views:(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSArray</span>&lt;GTMAdNativeExpressAdView *&gt; *)views {
+    <span/>    
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----原生模版广告加载成功----"</span>);
+    <span/>    
+    <span/>    [_adViews removeAllObjects];
+    <span/>    
+    <span/>    <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">for</span> (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">int</span> i = <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">0</span>; i &lt; views.count; i++) {
+    <span/>        GTMAdNativeExpressAdView *adView = views[i];
+    <span/>        <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 渲染广告视图</span>
+    <span/>        [adView rednerWithController:<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>];
+    <span/>        [_adViews addObject:adView];
+    <span/>        
+    <span/>    }
+    <span/>    
+    <span/>    [_tableView reloadData];
+    <span/>}
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.4.5 模版视图渲染成功后，视图高度已经重新自适应调整，刷新界面。</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;">- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_nativeExpressAdViewRenderSuccess:(GTMAdNativeExpressAdView *)nativeExpressAdView {
+    <span/>    
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"%@"</span>, [<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSString</span> stringWithFormat:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----原生模版广告_0%lu渲染成功----"</span>, (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">unsigned</span> <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">long</span>)[_adViews indexOfObject:nativeExpressAdView] + <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">1</span>]);
+    <span/>    [_tableView reloadData];
+    <span/>} 
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.4.6 代理方法中收到模版广告被关闭回调后主动移除广告视图</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;">- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_nativeExpressAdViewDidClose:(GTMAdNativeExpressAdView *)nativeExpressadView {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----关闭原生模版广告----"</span>);
+    <span/>    [nativeExpressadView removeFromSuperview];
+    <span/>    [_adViews removeObject:nativeExpressadView];
+    <span/>    [_tableView reloadData];
+    <span/>}
+    <span/></code></pre>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">2.5 插屏广告</span><span class="suffix" style="display: none;"></span></h3>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.5.1 插屏广告对应头文件</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-meta" style="color: #643820; line-height: 26px;">#import <span class="hljs-meta-string" style="color: #c41a16; line-height: 26px;">"GTMAdInterstitialAd.h"</span></span>
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.5.2 创建实例并设置代理</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">@property</span> (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">nonatomic</span>, <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">strong</span>) GTMAdInterstitialAd *interstitialAd;
+    <span/>
+    <span/>_interstitialAd = [[GTMAdInterstitialAd alloc] initWithAppId:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"6A90F3261545"</span> placementId:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"SDKAEBDA8F71997"</span> adSize:<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">CGSizeMake</span>(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.width - <span class="hljs-number" style="color: #1c00cf; line-height: 26px;">60</span>, <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">UIScreen</span>.mainScreen.bounds.size.width)];
+    <span/>_interstitialAd.delegate = <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>;
+    <span/>[_interstitialAd loadAd];
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.5.3 处理代理回调事件</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-comment" style="color: #007400; line-height: 26px;">// 实现代理</span>
+    <span/>&lt;GTMAdInterstitialAdDelegate&gt;
+    <span/>  
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_interstitialSuccessToLoadAd:(GTMAdInterstitialAd *)interstitialAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----插屏广告加载成功----"</span>);
+    <span/>    
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 显示插屏广告</span>
+    <span/>    [interstitialAd showAdFromRootViewController:<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>];
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 可根据业务逻辑选择在之后展示 一般有效期为半小时 展示之前使用 isValid 判断广告是否有效再展示</span>
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_interstitialFailToLoadAd:(GTMAdInterstitialAd *)interstitialAd error:(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSError</span> *)error {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----插屏广告加载失败 [error=&gt;%@] ----"</span>, error);
+    <span/>    [_loadingView stopAnimating];
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_interstitialWillVisible:(GTMAdInterstitialAd *)interstitialAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----插屏广告显示成功----"</span>);
+    <span/>    [_loadingView stopAnimating];
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_interstitalFailToPresent:(GTMAdInterstitialAd *)interstitialAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----插屏广告显示失败----"</span>);
+    <span/>    [_loadingView stopAnimating];
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_interstitialDidClick:(GTMAdInterstitialAd *)interstitialAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----点击插屏广告----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_interstitialDidCloseOtherController:(GTMAdInterstitialAd *)interstitialAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----点击插屏广告后展示的广告页被关闭----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_interstitialDidClose:(GTMAdInterstitialAd *)interstitialAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----插屏广告展示完成----"</span>);
+    <span/>}
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.5.4 在广告加载成功后选择是否展示</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;">- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_interstitialSuccessToLoadAd:(GTMAdInterstitialAd *)interstitialAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----插屏广告加载成功----"</span>);
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 显示插屏广告</span>
+    <span/>    [interstitialAd showAdFromRootViewController:<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>];
+    <span/>    <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 可根据业务逻辑选择在之后展示 一般有效期为半小时 展示之前使用 isValid 判断广告是否有效再展示</span>
+    <span/>}
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.5.5 注意代理中<code>点击广告回调</code> <code>广告展示结束回调</code>这两个回调的顺序会在不同上游的广告中表现不一样</span><span class="suffix" style="display: none;"></span></h5>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">一些上游广告点击后 先执行<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">广告展示结束回调</code>后立即执行
+                <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">点击广告回调</code>，即点击广告时自动关闭广告页。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">一些上游广告点击之后执行<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">点击广告回调</code>，不会主动关闭广告页。</section>
+        </li>
+    </ul>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">2.6 全屏视频广告</span><span class="suffix" style="display: none;"></span></h3>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.6.1 全屏视频广告对应头文件</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-meta" style="color: #643820; line-height: 26px;">#import <span class="hljs-meta-string" style="color: #c41a16; line-height: 26px;">"GTMAdFullscreenVideoAd.h"</span></span>
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.6.2 创建实例并设置代理</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">@property</span> (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">nonatomic</span>, <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">strong</span>) GTMAdFullscreenVideoAd *fullscreenVideoAd;
+    <span/>
+    <span/>_fullscreenVideoAd = [[GTMAdFullscreenVideoAd alloc] initWithAppId:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"6A90F3261545"</span> placementId:<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"SDKFD4783576C59"</span>];
+    <span/>_fullscreenVideoAd.delegate = <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>;
+    <span/>[_fullscreenVideoAd loadAd];
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.6.3 实现代理方法</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;"><span class="hljs-comment" style="color: #007400; line-height: 26px;">// 实现代理</span>
+    <span/>&lt;GTMAdFullscreenVideoAdDelegate&gt;
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_fullscreenVideoAdDidLoad:(GTMAdFullscreenVideoAd *)fullscreenVideoAd {
+    <span/>    
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----全屏视频广告加载成功----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_fullscreenVideoAd:(GTMAdFullscreenVideoAd *)fullscreenVideoAd didFailWithError:(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSError</span> *)error {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----全屏视频广告加载失败 [error=&gt;%@] ----"</span>, error);
+    <span/>    [_loadingView stopAnimating];
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_fullscreenVideoAdViewRenderSuccess:(GTMAdFullscreenVideoAd *)fullscreenVideoAd {
+    <span/>    
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----全屏视频广告渲染成功----"</span>);
+    <span/>    [fullscreenVideoAd showAdFromRootViewController:<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>];
+    <span/>    [_loadingView stopAnimating];
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_fullscrrenVideoAdViewRenderFail:(GTMAdFullscreenVideoAd *)fullscreenVideoAd error:(<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSError</span> *)error {
+    <span/>    
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----全屏视频广告渲染失败 [error=&gt;%@] ----"</span>, error);
+    <span/>    [_loadingView stopAnimating];
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_fullscreenVideoAdViewWillVisible:(GTMAdFullscreenVideoAd *)fullscreenVideoAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----全屏视频广告即将展示----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_fullscreenVideoAdViewDidVisible:(GTMAdFullscreenVideoAd *)fullscreenVideoAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----全屏视频广告展示成功----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_fullscreenVideoAdDidClick:(GTMAdFullscreenVideoAd *)fullscreenVideoAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----点击全屏视频广告----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_fullscreenVideoAdDidCloseOtherController:(GTMAdFullscreenVideoAd *)fullscreenVideoAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----点击全屏视频后打开的广告页被关闭----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_fullscreenVideoAdDidClose:(GTMAdFullscreenVideoAd *)fullscreenVideoAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----关闭全屏视频广告----"</span>);
+    <span/>}
+    <span/>
+    <span/>- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_fullscreenVideoAdDidPlayFinish:(GTMAdFullscreenVideoAd *)fullscreenVideoAd {
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----全屏视频广告播放完成----"</span>);
+    <span/>}
+    <span/></code></pre>
+    <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.6.4 在广告渲染成功后选择是否展示</span><span class="suffix" style="display: none;"></span></h5>
+    <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://my-wechat.mdnice.com/point.png); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: block; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;">- (<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_fullscreenVideoAdViewRenderSuccess:(GTMAdFullscreenVideoAd *)fullscreenVideoAd {
+    <span/>    
+    <span/>    <span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----全屏视频广告渲染成功----"</span>);
+    <span/>   <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 展示全屏视频广告</span>
+    <span/>    [fullscreenVideoAd showAdFromRootViewController:<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>];
+    <span/>    [_loadingView stopAnimating];
+    <span/>   <span class="hljs-comment" style="color: #007400; line-height: 26px;">// 可根据业务逻辑选择在之后展示 一般有效期为半小时 展示之前使用 isValid 判断广告是否有效再展示</span>
+    <span/>   <span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">if</span> ([fullscreenVideoAd isValid]) {
+    <span/>      
+    <span/>    }
+    <span/>}
+    <span/></code></pre>
+    <h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 22px;"><span class="prefix" style="display: none;"></span><span class="content">3. 更新日志</span><span class="suffix"></span></h2>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.0.8版本</span><span class="suffix" style="display: none;"></span></h3>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">更新第三方SDK版本。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">开屏广告添加超时设置(只针对广点通上游有效)。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">激励视频、全屏视频头条上游广告废弃某些字段。</section>
+        </li>
+    </ul>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.0.6版本</span><span class="suffix" style="display: none;"></span></h3>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">更新第三方SDK版本，需要添加新依赖库libbz2.tbd。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">调整激励视频回调时机。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">注意更新1.0.6版本需要更新对应的头条SDK。</section>
+        </li>
+    </ul>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.0.5 版本</span><span class="suffix" style="display: none;"></span></h3>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">修复全屏视频sigmob平台广告不回调WillVisible方法。</section>
+        </li>
+    </ul>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.0.4 版本</span><span class="suffix" style="display: none;"></span></h3>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">添加Sigmob广告平台。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">开屏广告针对广点通添加背景颜色和背景图片设置。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">信息流模版针对广点通添加非Wi-Fi环境是否自动播放、自动播放时是否静音、视频详情页是否静音设置。</section>
+        </li>
+    </ul>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.0.3 版本</span><span class="suffix" style="display: none;"></span></h3>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">调整穿山甲开屏广告加载完成和渲染完成的回调时机。</section>
+        </li>
+    </ul>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.0.2 版本</span><span class="suffix" style="display: none;"></span></h3>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">添加全屏视频和插屏视频广告。</section>
+        </li>
+    </ul>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.0.1 版本</span><span class="suffix" style="display: none;"></span></h3>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">添加开屏、banner、激励视频广告。</section>
+        </li>
+    </ul>
+    <h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 22px;"><span class="prefix" style="display: none;"></span><span class="content">4. 常见问题</span><span class="suffix"></span></h2>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">所有类型广告中，需要传入的<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">ViewController</code>是用来展示广告详情页的，在广告展示期间，请保持
+                <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">ViewController</code>存活。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">开屏广告中穿山甲上游所返回的广告是展示在传入的容器<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">window</code>的
+                <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">RootViewController</code>的
+                <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">view</code>上，与广点通和其他平台展示在容器
+                <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">window</code>有区别。如果有影响到工程内其他业务逻辑，请不要配置穿山甲广告或者只配置穿山甲广告。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">全屏视频中sigmob平台所展示的广告在点击跳过按钮之后，依然回调播放完成代理方法。所以不能把视频播放完成回调作为用户是否完整观看视频的依据。如果不能满足你的业务逻辑要求，请不要配置sigmob平台的广告，其他平台广告点击跳过按钮不会回调视频播放完成方法。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">开屏和全屏视频广告中sigmob平台所返回的广告，在被点击展示广告详情页之后，无法回调广告详情页被关闭的回调。</section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">更多关于接入方面的问题请参考iOS接入demo或者联系商务同学。</section>
+        </li>
+    </ul>
+    <p id="nice-suffix-juejin-container" class="nice-suffix-juejin-container" data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black; margin-top: 20px !important;">本文使用 <a href="https://mdnice.com/?from=juejin" style="text-decoration: none; color: #1e6bb8; word-wrap: break-word; font-weight: bold; border-bottom: 1px solid #1e6bb8;">mdnice</a> 排版</p>
+</section>
+
+</html>

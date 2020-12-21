@@ -1,0 +1,6 @@
+framework module GTMAdSDK {
+  umbrella header "GTMAdSDK.h"
+
+  export *
+  module * { export * }
+}

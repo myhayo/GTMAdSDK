@@ -1,13 +1,15 @@
 PODS:
-  - Bytedance-UnionAD (3.2.0.1)
-  - GDTMobSDK (4.11.10):
-    - GDTMobSDK/GDTMobSDK (= 4.11.10)
-  - GDTMobSDK/GDTMobSDK (4.11.10)
+  - Bytedance-UnionAD (3.3.6.1)
+  - GDTMobSDK (4.12.1):
+    - GDTMobSDK/GDTMobSDK (= 4.12.1)
+  - GDTMobSDK/GDTMobSDK (4.12.1)
   - GTMAdSDK (1.0.6):
-    - Bytedance-UnionAD (~> 3.2.0.1)
-    - GDTMobSDK (~> 4.11.10)
-    - SigmobAd-iOS (~> 2.20.1)
-  - SigmobAd-iOS (2.20.1)
+    - Bytedance-UnionAD
+    - GDTMobSDK
+    - SigmobAd-iOS
+  - SigmobAd-iOS (2.23.1):
+    - SigmobAd-iOS/WindSDK (= 2.23.1)
+  - SigmobAd-iOS/WindSDK (2.23.1)
 
 DEPENDENCIES:
   - GTMAdSDK (from `../`)
@@ -23,11 +25,11 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Bytedance-UnionAD: b412cba2697ff81a92a4f74a4cd9ed397a415550
-  GDTMobSDK: a1fddadfa32cf4e95d3f70c96677a35c156989f8
-  GTMAdSDK: 91a1155f223539c3faf53ebc0b6617208e0f7997
-  SigmobAd-iOS: 889d0dd65349bd795bd75a8a7b3b476c838ec29b
+  Bytedance-UnionAD: f496daec3dbd590014ed1a9facee328ec17f064d
+  GDTMobSDK: 8153fd4ed7f16be4786923226487ff60f0344a4f
+  GTMAdSDK: e59cd4b5a26fd3a3be4bce780d12e34d9a336596
+  SigmobAd-iOS: 7724dc1f7c09ade012487c020e1d75ac50eee778
 
 PODFILE CHECKSUM: e2c44050b7db185c518b4e64ef433c8c6dda4c1b
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.0

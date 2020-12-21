@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak, nullable) id<GTMAdFullscreenVideoAdDelegate> delegate;
 
-/// 视频是否有效
+/// 视频是否有效 (头条上游废弃该字段 上游广告为头条时总是返回YES)
 @property (nonatomic, readonly) BOOL isAdValid;
 
 /// 初始化

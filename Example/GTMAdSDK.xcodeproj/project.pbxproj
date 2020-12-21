@@ -244,7 +244,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = GTMADSDK;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = Aaslte;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
@@ -328,7 +328,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-GTMAdSDK_Example/Pods-GTMAdSDK_Example-resources.sh",
 				"${PODS_ROOT}/Bytedance-UnionAD/Bytedance-UnionAd/Frameworks/BUAdSDK.bundle",
 				"${PODS_ROOT}/../../lib/GTMAdSDK.framework/MHAdResource.bundle",
-				"${PODS_ROOT}/SigmobAd-iOS/Sigmob/Sigmob.bundle",
+				"${PODS_ROOT}/SigmobAd-iOS/WindSDK/Sigmob.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (

@@ -45,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 开屏广告的背景色 可以设置开屏图片来作为开屏加载时的背景色 （目前只针对广点通上游广告）
 @property (nonatomic, copy) UIColor *backgroundColor;
 
+/// 拉取广告超时时间 默认6秒 最低3秒 (目前该字段只针对广点通上游广告有效) 建议使用默认
+@property (nonatomic, assign) CGFloat fetchDelay;
+
 /// 初始化开屏广告
 /// @param appId appId
 /// @param placementId 广告位id

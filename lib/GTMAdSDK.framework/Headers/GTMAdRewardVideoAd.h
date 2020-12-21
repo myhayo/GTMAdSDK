@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GTMAdRewardVideoAd : NSObject
 
-/// 广告缓存的视频是否有效
+/// 广告缓存的视频是否有效 (头条上游废弃该字段 上游广告为头条时总是返回YES)
 @property (nonatomic, assign, readonly) BOOL isValid;
 
 @property (nonatomic, weak) id<GTMAdRewardVideoAdDelegate> delegate;

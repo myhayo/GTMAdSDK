@@ -95,11 +95,46 @@
     } else {
         if (indexPath.row == 7) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"adView_01" forIndexPath:indexPath];
-            [cell.contentView addSubview:_adViews[0]];
+            if ([cell.contentView viewWithTag:10086] == nil) {
+                UILabel *label = [[UILabel alloc] init];
+                label.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 140);
+                label.textAlignment = NSTextAlignmentCenter;
+                label.numberOfLines = 0;
+                label.text = @"本次获取广告时adSize设置为屏幕宽减60，高度为0，自动适应高度。下面红框内为广告内容";
+                label.tag = 10086;
+                [cell.contentView addSubview:label];
+            }
+            
+            UIView *adView = _adViews[0];
+            // 测试时添加标记 方便查看大小
+            adView.layer.borderColor = [UIColor redColor].CGColor;
+            adView.layer.borderWidth = 1;
+            // 本次获取广告时adSize为屏幕宽减去60 所以这里设置minX = 30 cell高度为adview高度+150 提示lable高度为100
+            adView.frame = CGRectMake(30, 140, adView.frame.size.width, adView.frame.size.height);
+            
+            [cell.contentView addSubview:adView];
             return cell;
         } else if (indexPath.row == 8) {
+            
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"adView_02" forIndexPath:indexPath];
-            [cell.contentView addSubview:_adViews[1]];
+            if ([cell.contentView viewWithTag:10088] == nil) {
+                UILabel *label = [[UILabel alloc] init];
+                label.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 140);
+                label.textAlignment = NSTextAlignmentCenter;
+                label.numberOfLines = 0;
+                label.text = @"本次获取广告时adSize设置为屏幕宽减60，高度为0，自动适应高度。下面红框内为广告内容";
+                label.tag = 10088;
+                [cell.contentView addSubview:label];
+            }
+            
+            UIView *adView = _adViews[1];
+            // 测试时添加标记 方便查看大小
+            adView.layer.borderColor = [UIColor redColor].CGColor;
+            adView.layer.borderWidth = 1;
+            // 本次获取广告时adSize为屏幕宽减去60 所以这里设置minX = 30 cell高度为adview高度+150 提示lable高度为140
+            adView.frame = CGRectMake(30, 140, adView.frame.size.width, adView.frame.size.height);
+            
+            [cell.contentView addSubview:adView];
             return cell;
         }
         return [[UITableViewCell alloc] init];
@@ -112,9 +147,9 @@
         return 60;
     }
     if (indexPath.row == 7) {
-        return _adViews[0].frame.size.height;
+        return _adViews[0].frame.size.height + 150;
     } else if (indexPath.row == 8) {
-        return _adViews[1].frame.size.height;
+        return _adViews[1].frame.size.height + 150;
     }
     
     return 0;
@@ -186,7 +221,7 @@
         [_bannerView removeFromSuperview];
         
         // 高度给0 让模版在render之后自适应
-        _nativeExpressAd = [[GTMAdNativeExpressAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDKFB0E89AEC0B4" adSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width, 0)];
+        _nativeExpressAd = [[GTMAdNativeExpressAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDKFB0E89AEC0B4" adSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width - 60, 0)];
         _nativeExpressAd.delegate = self;
         [_nativeExpressAd loadAd:2];
         for (UIView *adView in _adViews) {
@@ -199,8 +234,8 @@
         
         [_bannerView removeFromSuperview];
         
-        // 高度给0 让模版在render之后自适应
-        _nativeExpressAd = [[GTMAdNativeExpressAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDKD8D7CC6361DA" adSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width, 0)];
+        // 高度给0 让模版在render之后自适应 本次宽度设置为屏幕宽减60
+        _nativeExpressAd = [[GTMAdNativeExpressAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDKD8D7CC6361DA" adSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width - 60, 0)];
         _nativeExpressAd.delegate = self;
         _nativeExpressAd.videoAutoPlayOnWWAN = YES;
         _nativeExpressAd.videoMuted = YES;
