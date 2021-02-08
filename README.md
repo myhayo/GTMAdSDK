@@ -1,4 +1,4 @@
-# 火眼聚合广告 SDK v1.0.8 接入文档 （for iOS）
+# 火眼聚合广告 SDK v1.1.0 接入文档 （for iOS）
 
 [TOC]
 
@@ -12,6 +12,75 @@ pod 'GTMAdSDK'
 
 ### 1.2 聚合包使用第三方平台SDK版本
 
+**聚合SDK1.1.0版本开始使用头条SDK新版本，头条更新了在iOS14中广告标识的支持。**
+
+**请注意如有配置头条的广告位，需要在工程内info.plist文件中配置**
+
+### 头条SDK(穿山甲SDK)额外配置：
+
+- 将穿山甲的 SKAdNetwork ID 添加到 info.plist 中，以保证 `SKAdNetwork` 的正确运行
+
+```xml
+<key>SKAdNetworkItems</key>
+  <array>
+    <dict>
+      <key>SKAdNetworkIdentifier</key>
+      <string>238da6jt44.skadnetwork</string>
+    </dict>
+    <dict>
+      <key>SKAdNetworkIdentifier</key>
+      <string>22mmun2rn5.skadnetwork</string>
+    </dict>
+	</array>
+```
+
+- 支持苹果 ATT：从 iOS 14 开始，若开发者设置 App Tracking Transparency 向用户申请跟踪授权，在用户授权之前IDFA 将不可用。 如果用户拒绝此请求，应用获取到的 IDFA 将自动清零，可能会导致您的广告收入的降低。
+
+- 要获取 App Tracking Transparency 权限，请更新您的 Info.plist，添加 NSUserTrackingUsageDescription 字段和自定义文案描述。代码示例
+
+  ```xml
+  <key>NSUserTrackingUsageDescription</key>
+  <string>该标识符将用于向您投放个性化广告</string>
+  ```
+
+- 要向用户申请权限时，请调用 `requestTrackingAuthorizationWithCompletionHandler:`，我们建议您申请权限后再请求广告，以便获得穿山甲准确获得用户的授权。
+
+- 调用下面权限申请后，会弹出系统提示弹窗，弹窗中文案如info.plist中配置的文案**该标识符将用于向您投放个性化广告**，或者自己定义文案。
+
+  **Swift 代码示例**
+
+  ```swift
+  import AppTrackingTransparency
+  import AdSupport
+  func requestIDFA() {
+    ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
+      // Tracking authorization completed. Start loading ads here.
+      // loadAd()
+    })
+  }
+  ```
+
+  **Objective-C 代码示例**
+
+  ```objective-c
+  #import <AppTrackingTransparency/AppTrackingTransparency.h>
+  #import <AdSupport/AdSupport.h>
+  - (void)requestIDFA {
+    [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+      // Tracking authorization completed. Start loading ads here.
+      // [self loadAd];
+    }];
+  }
+  ```
+
+### 如有不明白的地方请访问下面地址查看详情
+
+[穿山甲新版配置说明](https://www.pangle.cn/help/doc/5fbdb5571ee5c2001d3f0c6f)
+
+https://www.pangle.cn/help/doc/5fbdb5571ee5c2001d3f0c6f
+
+### 其他注意事项
+
 如果原工程内自行接入第三方广告SDK，请尽量使用下列版本
 
 聚合版本1.0.6对应：
@@ -23,6 +92,12 @@ pod 'GTMAdSDK'
 聚合版本1.0.8对应：
 
 - 穿山甲SDK版本：**3.2.0.1**
+- 广点通SDK版本：**4.12.1**
+- sigmob SDK版本：**2.23.1**
+
+聚合版本1.1.0对应：
+
+- 穿山甲SDK版本：**3.4.2.3**
 - 广点通SDK版本：**4.12.1**
 - sigmob SDK版本：**2.23.1**
 
@@ -685,7 +760,13 @@ _fullscreenVideoAd.delegate = self;
 
 ## 3. 更新日志
 
+### 1.1.0版本
+
+- 更新头条SDK。
+- 头条SDK添加iOS14广告标识获取支持，请注意需要工程info.plist文件中配置(接入步骤中有说明)。
+
 ### 1.0.8版本
+
 - 更新第三方SDK版本。
 - 开屏广告添加超时设置(只针对广点通上游有效)。
 - 激励视频、全屏视频头条上游广告废弃某些字段。
