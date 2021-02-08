@@ -98,8 +98,8 @@ https://www.pangle.cn/help/doc/5fbdb5571ee5c2001d3f0c6f
 聚合版本1.1.0对应：
 
 - 穿山甲SDK版本：**3.4.2.3**
-- 广点通SDK版本：**4.12.1**
-- sigmob SDK版本：**2.23.1**
+- 广点通SDK版本：**4.12.3**
+- sigmob SDK版本：**2.25.1**
 
 如果是通过pod集成，pod配置文件里未对上游广告SDK限制了版本，pod-install时会自动依赖最新版本。
 
@@ -764,6 +764,8 @@ _fullscreenVideoAd.delegate = self;
 
 - 更新头条SDK。
 - 头条SDK添加iOS14广告标识获取支持，请注意需要工程info.plist文件中配置(接入步骤中有说明)。
+- 更新广点通SDK。
+- 更新SigmobAd平台SDK，SigmobAd平台移除全屏视频支持。
 
 ### 1.0.8版本
 

@@ -37,7 +37,8 @@ Pod::Spec.new do |s|
   # s.dependency 'Bytedance-UnionAD'
   # 新版本头条SDK
   s.dependency 'Ads-CN'
-  s.dependency 'SigmobAd-iOS'
+  # SigmobAd平台限制版本 因为2.23.1以后该sdk内没有全屏视频广告
+  s.dependency 'SigmobAd-iOS', '~> 2.25.1'
   valid_archs = ['armv7', 'armv7s', 'x86_64', 'arm64']
   s.xcconfig = {
     'VALID_ARCHS' =>  valid_archs.join(' '),
