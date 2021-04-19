@@ -1,4 +1,4 @@
-# 火眼聚合广告 SDK v1.1.0 接入文档 （for iOS）
+# 火眼聚合广告 SDK v1.1.1 接入文档 （for iOS）
 
 [TOC]
 
@@ -101,7 +101,15 @@ https://www.pangle.cn/help/doc/5fbdb5571ee5c2001d3f0c6f
 - 广点通SDK版本：**4.12.3**
 - sigmob SDK版本：**2.25.1**
 
+聚合版本1.1.1对应：
+
+- 穿山甲SDK版本：**3.5.1.2**
+- 广点通SDK版本：**4.12.60**
+- sigmob SDK版本：**2.25.1**
+
 如果是通过pod集成，pod配置文件里未对上游广告SDK限制了版本，pod-install时会自动依赖最新版本。
+
+如果之前已经接入旧版本GTMAd，进行升级SDK时，记得执行pod update Ads-CN 和GDTMobSDK，pod本地会有旧版Ads-CN、GDTMobSDK的缓存。
 
 如果pod导入的第三方SDK版本超过聚合版本里使用的第三方SDK版本时，有可能出现不兼容现象，此时请修改pod配置文件(GTMAdSDK.podspec)，在文件中对第三方SDK进行版本限制。
 
@@ -481,7 +489,9 @@ _rewardVideoAd.delegate = self;
 // 高度给0 让模版在render之后自适应
 _nativeExpressAd = [[GTMAdNativeExpressAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDKFB0E89AEC0B4" adSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width, 0)];
 _nativeExpressAd.delegate = self;
-[_nativeExpressAd loadAd:2];
+// 注意这里一次加载了两个adView，加载多个时，每个adView都需要进行渲染，否则影响曝光率
+// 如果不需要一次加载多个，修改为每次加载一个就好了
+[_nativeExpressAd loadAd:2]; 
 
 for (UIView *adView in _adViews) {
 	[adView removeFromSuperview];
@@ -516,6 +526,7 @@ for (UIView *adView in _adViews) {
     
     NSLog(@"%@", [NSString stringWithFormat:@"----原生模版广告_0%lu渲染成功----", (unsigned long)[_adViews indexOfObject:nativeExpressAdView] + 1]);
     [_tableView reloadData];
+  // 注意这里渲染成功了 不代表曝光成功了 只有当广告出现在屏幕可见的地方才会曝光成功
 }
 
 - (void)gtm_nativeExpressAdViewWillShow:(GTMAdNativeExpressAdView *)nativeExpressAdView {
@@ -759,6 +770,10 @@ _fullscreenVideoAd.delegate = self;
 
 
 ## 3. 更新日志
+
+### 1.1.1版本
+
+- 更新头条SDK。
 
 ### 1.1.0版本
 

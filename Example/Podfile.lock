@@ -1,15 +1,15 @@
 PODS:
-  - Ads-CN (3.4.2.3):
-    - Ads-CN/BUAdSDK (= 3.4.2.3)
-  - Ads-CN/BUAdSDK (3.4.2.3):
+  - Ads-CN (3.5.1.2):
+    - Ads-CN/BUAdSDK (= 3.5.1.2)
+  - Ads-CN/BUAdSDK (3.5.1.2):
     - Ads-CN/BUFoundation
     - Ads-CN/Domestic
-  - Ads-CN/BUFoundation (3.4.2.3)
-  - Ads-CN/Domestic (3.4.2.3)
-  - GDTMobSDK (4.12.3):
-    - GDTMobSDK/GDTMobSDK (= 4.12.3)
-  - GDTMobSDK/GDTMobSDK (4.12.3)
-  - GTMAdSDK (1.1.0):
+  - Ads-CN/BUFoundation (3.5.1.2)
+  - Ads-CN/Domestic (3.5.1.2)
+  - GDTMobSDK (4.12.60):
+    - GDTMobSDK/GDTMobSDK (= 4.12.60)
+  - GDTMobSDK/GDTMobSDK (4.12.60)
+  - GTMAdSDK (1.1.1):
     - Ads-CN
     - GDTMobSDK
     - SigmobAd-iOS (~> 2.25.1)
@@ -31,9 +31,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Ads-CN: e73f0137d12d841eb2cfcfecbe75c0d3f74d5889
-  GDTMobSDK: 1e245a7a1f3960516fa8f5fb1038a349931dbd90
-  GTMAdSDK: 5f42c2b5c1a0ec1e9cb32df3ece0c036aba12bd6
+  Ads-CN: c9f347beb4f9f3894ba1955eee224dd47c3da722
+  GDTMobSDK: fcaaeaf16af7203627e4e5d2ab81949c158e3d9c
+  GTMAdSDK: cff1a1b81e271c02f1f02da2e42c7466eb139993
   SigmobAd-iOS: 8ee14d73e480f3bef9b54e18104c967b21dc6d82
 
 PODFILE CHECKSUM: e2c44050b7db185c518b4e64ef433c8c6dda4c1b

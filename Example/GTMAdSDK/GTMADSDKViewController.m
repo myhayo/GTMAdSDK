@@ -223,7 +223,7 @@
         // 高度给0 让模版在render之后自适应
         _nativeExpressAd = [[GTMAdNativeExpressAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDKFB0E89AEC0B4" adSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width - 60, 0)];
         _nativeExpressAd.delegate = self;
-        [_nativeExpressAd loadAd:2];
+        [_nativeExpressAd loadAd:1];
         for (UIView *adView in _adViews) {
             [adView removeFromSuperview];
         }
@@ -240,7 +240,7 @@
         _nativeExpressAd.videoAutoPlayOnWWAN = YES;
         _nativeExpressAd.videoMuted = YES;
         _nativeExpressAd.detailPageVideoMuted = NO;
-        [_nativeExpressAd loadAd:2];
+        [_nativeExpressAd loadAd:1];
         for (UIView *adView in _adViews) {
             [adView removeFromSuperview];
         }
@@ -363,7 +363,6 @@
         // 渲染广告视图
         [adView rednerWithController:self];
         [_adViews addObject:adView];
-        
     }
     
     [_tableView reloadData];
@@ -372,12 +371,14 @@
 - (void)gtm_nativeExpressAdViewRenderSuccess:(GTMAdNativeExpressAdView *)nativeExpressAdView {
     
     NSLog(@"%@", [NSString stringWithFormat:@"----原生模版广告_0%lu渲染成功----", (unsigned long)[_adViews indexOfObject:nativeExpressAdView] + 1]);
+    // 这里注意 (渲染成功不代表广告曝光成功， 只有在nativeExpressAdView出现在屏幕可见的范围内时，才算曝光成功)
     [_tableView reloadData];
 }
 
 - (void)gtm_nativeExpressAdViewWillShow:(GTMAdNativeExpressAdView *)nativeExpressAdView {
     [_loadingView stopAnimating];
     NSLog(@"----原生模版广告显示成功----");
+    // 这里代表nativeExpressAdView广告视图曝光成功
 }
 
 - (void)gtm_nativeExpressAdViewDidClick:(GTMAdNativeExpressAdView *)nativeExpressAdView {
