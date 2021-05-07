@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GTMAdSDK'
-  s.version          = '1.1.1'
+  s.version          = '1.1.2'
   s.summary          = '火眼聚合广告SDK'
 
 # This description is used to generate tags and improve search results.

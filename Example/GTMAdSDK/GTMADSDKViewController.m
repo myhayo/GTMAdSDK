@@ -210,11 +210,14 @@
     }
     
     if (indexPath.row == 2) {
-        _rewardVideoAd = [[GTMAdRewardVideoAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDK2B98AAC02AA0"];
+        // _rewardVideoAd = [[GTMAdRewardVideoAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDK2B98AAC02AA0"];
+        GTMServerVerificationOptions *options = [[GTMServerVerificationOptions alloc] init];
+        options.userIdentifier = @"test";
+        options.customRewardString = @"testReward";
+        _rewardVideoAd = [[GTMAdRewardVideoAd alloc] initWithAppId:@"6A90F3261545" placementId:@"SDK2B98AAC02AA0" options:options];
         _rewardVideoAd.delegate = self;
         [_rewardVideoAd loadAd];
     }
-    
     
     if (indexPath.row == 3) {
         
@@ -349,6 +352,11 @@
 - (void)gtm_rewardVideoAd:(GTMAdRewardVideoAd *)rewardVideoAd didFailWithError:(NSError *)error {
     [_loadingView stopAnimating];
     NSLog(@"----激励视频广告展示失败 [error=>%@] ----", error);
+}
+
+- (void)gtm_rewardVideoAdDidRewardEffective:(GTMAdRewardVideoAd *)rewardedVideoAd info:(NSDictionary *)info {
+    
+    NSLog(@"----激励视频已经可以获得奖励 额外信息 %@----", info);
 }
 
 #pragma mark - 原生模版广告

@@ -36,7 +36,31 @@ NS_ASSUME_NONNULL_BEGIN
 /// 视频播放页关闭回调
 - (void)gtm_rewardVideoAdDidClose:(GTMAdRewardVideoAd *)rewardVdieoAd;
 
+/**
+ 视频广告播放达到激励条件回调
+ 
+ @param rewardedVideoAd GTMAdRewardVideoAd 实例
+ @param info 包含此次广告行为的一些信息
+ 
+ 如果上游是广点通 则信息为 @{@"GDT_TRANS_ID":@"930f1fc8ac59983bbdf4548ee40ac353"}, 通过@“GDT_TRANS_ID”可获取此次广告行为的交易id
+ 
+ 如果上游是头条 则信息为 @{@"verify": @(1)}
+ 通过@"verify"可以获取本次是否验证通过
+ */
+- (void)gtm_rewardVideoAdDidRewardEffective:(GTMAdRewardVideoAd *)rewardedVideoAd info:(NSDictionary *)info;
+
 @end
+
+@interface GTMServerVerificationOptions : NSObject
+
+// 用户的userid,可选
+@property(nonatomic, copy, nullable) NSString *userIdentifier;
+
+// 服务器端验证回调中包含的可选自定义奖励字符串
+@property(nonatomic, copy, nullable) NSString *customRewardString;
+
+@end
+
 
 @interface GTMAdRewardVideoAd : NSObject
 
@@ -44,12 +68,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) BOOL isValid;
 
 @property (nonatomic, weak) id<GTMAdRewardVideoAdDelegate> delegate;
+@property (nonatomic, strong) GTMServerVerificationOptions *options;
 
 
 /// 初始化
 /// @param appId appId
 /// @param placementId 广告位id
 - (instancetype)initWithAppId:(NSString *)appId placementId:(NSString *)placementId;
+
+/// 初始化
+/// @param appId appId
+/// @param placementId 广告位id
+/// @param options 奖励依赖服务端回调所需参数
+- (instancetype)initWithAppId:(NSString *)appId placementId:(NSString *)placementId options:(GTMServerVerificationOptions *)options;
 
 /// 加载广告
 - (void)loadAd;
