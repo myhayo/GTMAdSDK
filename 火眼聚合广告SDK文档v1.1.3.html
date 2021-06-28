@@ -9,7 +9,7 @@
 
 </head>
 <section id="nice" data-tool="mdnice编辑器" data-website="https://www.mdnice.com" style="font-size: 16px; color: black; width: 800px; margin: 60px auto; line-height: 1.6; word-spacing: 0px; letter-spacing: 0px; word-break: break-word; word-wrap: break-word; text-align: left; font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
-    <h1 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 24px;"><span class="prefix" style="display: none;"></span><span class="content"><strong style="font-weight: bold; color: black;">火眼聚合广告</strong> SDK v1.1.2 接入文档 （for iOS）</span><span class="suffix"></span></h1>
+    <h1 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 24px;"><span class="prefix" style="display: none;"></span><span class="content"><strong style="font-weight: bold; color: black;">火眼聚合广告</strong> SDK v1.1.3 接入文档 （for iOS）</span><span class="suffix"></span></h1>
     <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;"></p>
     <div class="table-of-contents" data-tool="mdnice编辑器">
         <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
@@ -37,6 +37,7 @@
             </li>
             <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">3. 更新日志</a>
                 <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: square;">
+                    <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.1.3版本</a></li>
                     <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.1.2版本</a></li>
                     <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.1.1版本</a></li>
                     <li><a href style="text-decoration: none; word-wrap: break-word; border-bottom: 1px solid #1e6bb8; border: none; color: black; font-weight: normal;">1.1.0版本</a></li>
@@ -154,6 +155,18 @@
             <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">sigmob SDK版本：<strong style="font-weight: bold; color: black;">2.25.1</strong></section>
         </li>
     </ul>
+    <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">聚合版本1.1.3</p>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">穿山甲SDK版本：<strong style="font-weight: bold; color: black;">3.7.0.5</strong></section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">广点通SDK版本：<strong style="font-weight: bold; color: black;">4.12.81</strong></section>
+        </li>
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">sigmob SDK版本：<strong style="font-weight: bold; color: black;">2.25.1</strong></section>
+        </li>
+    </ul>
     <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">如果是通过pod集成，pod配置文件里未对上游广告SDK限制了版本，pod-install时会自动依赖最新版本。</p>
     <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">如果之前已经接入旧版本GTMAd，进行升级SDK时，记得执行pod update Ads-CN 和GDTMobSDK，pod本地会有旧版Ads-CN、GDTMobSDK的缓存。</p>
     <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">如果pod导入的第三方SDK版本超过聚合版本里使用的第三方SDK版本时，有可能出现不兼容现象，此时请修改pod配置文件(GTMAdSDK.podspec)，在文件中对第三方SDK进行版本限制。</p>
@@ -203,13 +216,12 @@
     <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;"><a href="https://cocoapods.org/pods/SigmobAd-iOS" style="text-decoration: none; color: #1e6bb8; word-wrap: break-word; font-weight: bold; border-bottom: 1px solid #1e6bb8;">sigmob</a> https://cocoapods.org/pods/SigmobAd-iOS</p>
     <h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 22px;"><span class="prefix" style="display: none;"></span><span class="content">2. SDK 调用</span><span class="suffix"></span></h2>
     <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">SDK支持<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">开屏</code>、
-        <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">Banner</code>、
         <code
-            style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">激励视频</code>、
-            <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">信息流模版(图文和视频)</code>、
+            style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">Banner</code>、<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">激励视频</code>、
             <code
-                style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">插屏</code>、
-                <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">全屏视频</code>六种种类型的广告。</p>
+                style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">信息流模版(图文和视频)</code>、<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">插屏</code>、
+                <code
+                    style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">全屏视频</code>六种种类型的广告。</p>
     <p data-tool="mdnice编辑器" style="font-size: 16px; padding-top: 8px; padding-bottom: 8px; margin: 0; line-height: 26px; color: black;">对应类型广告调用时导入对应的头文件。</p>
     <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">2.1 开屏广告</span><span class="suffix" style="display: none;"></span></h3>
     <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.1.1 开屏广告对应头文件</span><span class="suffix" style="display: none;"></span></h5>
@@ -272,7 +284,8 @@
     <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
         <li>
             <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">一些上游广告点击后 先执行<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">广告展示结束回调</code>后立即执行
-                <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">点击广告回调</code>，即点击广告时自动关闭广告页。</section>
+                <code
+                    style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">点击广告回调</code>，即点击广告时自动关闭广告页。</section>
         </li>
         <li>
             <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">一些上游广告点击之后执行<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">点击广告回调</code>，不会主动关闭广告页。</section>
@@ -288,6 +301,12 @@
     <h5 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 16px;"><span class="prefix" style="display: none;"></span><span class="content">2.6.4 在广告渲染成功后选择是否展示</span><span class="suffix" style="display: none;"></span></h5>
     <pre class="custom" data-tool="mdnice编辑器" style="margin-top: 10px; margin-bottom: 10px; border-radius: 5px; box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;"><span style="display: block; background: url(https://files.mdnice.com/user/3441/876cad08-0422-409d-bb5a-08afec5da8ee.svg); height: 30px; width: 100%; background-size: 40px; background-repeat: no-repeat; background-color: #fff; margin-bottom: -7px; border-radius: 5px; background-position: 10px 10px;"></span><code class="hljs" style="overflow-x: auto; padding: 16px; color: black; display: -webkit-box; font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; font-size: 12px; -webkit-overflow-scrolling: touch; padding-top: 15px; background: #fff; border-radius: 5px;">-&nbsp;(<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">void</span>)gtm_fullscreenVideoAdViewRenderSuccess:(GTMAdFullscreenVideoAd&nbsp;*)fullscreenVideoAd&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hljs-built_in" style="color: #5c2699; line-height: 26px;">NSLog</span>(<span class="hljs-string" style="color: #c41a16; line-height: 26px;">@"----全屏视频广告渲染成功----"</span>);<br>&nbsp;&nbsp;&nbsp;<span class="hljs-comment" style="color: #007400; line-height: 26px;">//&nbsp;展示全屏视频广告</span><br>&nbsp;&nbsp;&nbsp;&nbsp;[fullscreenVideoAd&nbsp;showAdFromRootViewController:<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">self</span>];<br>&nbsp;&nbsp;&nbsp;&nbsp;[_loadingView&nbsp;stopAnimating];<br>&nbsp;&nbsp;&nbsp;<span class="hljs-comment" style="color: #007400; line-height: 26px;">//&nbsp;可根据业务逻辑选择在之后展示&nbsp;一般有效期为半小时&nbsp;展示之前使用&nbsp;isValid&nbsp;判断广告是否有效再展示</span><br>&nbsp;&nbsp;&nbsp;<span class="hljs-keyword" style="color: #aa0d91; line-height: 26px;">if</span>&nbsp;([fullscreenVideoAd&nbsp;isValid])&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br></code></pre>
     <h2 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 22px;"><span class="prefix" style="display: none;"></span><span class="content">3. 更新日志</span><span class="suffix"></span></h2>
+    <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.1.3版本</span><span class="suffix" style="display: none;"></span></h3>
+    <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
+        <li>
+            <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">开屏和信息流模版广告增加素材屏蔽。</section>
+        </li>
+    </ul>
     <h3 data-tool="mdnice编辑器" style="margin-top: 30px; margin-bottom: 15px; padding: 0px; font-weight: bold; color: black; font-size: 20px;"><span class="prefix" style="display: none;"></span><span class="content">1.1.2版本</span><span class="suffix" style="display: none;"></span></h3>
     <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
         <li>
@@ -379,14 +398,15 @@
     <ul data-tool="mdnice编辑器" style="margin-top: 8px; margin-bottom: 8px; padding-left: 25px; color: black; list-style-type: disc;">
         <li>
             <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">所有类型广告中，需要传入的<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">ViewController</code>是用来展示广告详情页的，在广告展示期间，请保持
-                <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">ViewController</code>存活。</section>
+                <code
+                    style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">ViewController</code>存活。</section>
         </li>
         <li>
             <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">开屏广告中穿山甲上游所返回的广告是展示在传入的容器<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">window</code>的
-                <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">RootViewController</code>的
                 <code
-                    style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">view</code>上，与广点通和其他平台展示在容器
-                    <code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">window</code>有区别。如果有影响到工程内其他业务逻辑，请不要配置穿山甲广告或者只配置穿山甲广告。</section>
+                    style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">RootViewController</code>的<code style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">view</code>上，与广点通和其他平台展示在容器
+                    <code
+                        style="font-size: 14px; word-wrap: break-word; padding: 2px 4px; border-radius: 4px; margin: 0 2px; color: #1e6bb8; background-color: rgba(27,31,35,.05); font-family: Operator Mono, Consolas, Monaco, Menlo, monospace; word-break: break-all;">window</code>有区别。如果有影响到工程内其他业务逻辑，请不要配置穿山甲广告或者只配置穿山甲广告。</section>
         </li>
         <li>
             <section style="margin-top: 5px; margin-bottom: 5px; line-height: 26px; text-align: left; color: rgb(1,1,1); font-weight: 500;">全屏视频中sigmob平台所展示的广告在点击跳过按钮之后，依然回调播放完成代理方法。所以不能把视频播放完成回调作为用户是否完整观看视频的依据。如果不能满足你的业务逻辑要求，请不要配置sigmob平台的广告，其他平台广告点击跳过按钮不会回调视频播放完成方法。</section>

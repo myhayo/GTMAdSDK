@@ -244,7 +244,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = GTMADSDK;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = Aaslte;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
