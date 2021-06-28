@@ -1,0 +1,13 @@
+
+
+1.更换lib的framework
+2.更新README.md
+3.更新文档
+4.git add .
+5.git commit "版本号"
+6.git push // 推送仓库
+7.git tag // 查看所有tag
+8.git tag 1.1.3 // 版本号 添加新tag
+9.git push --tags // 推送新tag到仓库
+10.pod trunk GTMAdSDK.podspec 
+11. --allow-warnings // 忽略警告
